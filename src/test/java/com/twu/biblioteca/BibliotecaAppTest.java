@@ -1,7 +1,11 @@
 package com.twu.biblioteca;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class BibliotecaAppTest {
+    @Test
+    public void test() {
+
+    }
 
 }

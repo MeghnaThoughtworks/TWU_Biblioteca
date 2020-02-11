@@ -14,11 +14,10 @@ class LibraryTest {
     @Test
     public void shouldGetABook() {
         Book book = mock(Book.class);
-        ArrayList<Book> books = new ArrayList<Book>();
+        ArrayList<Book> books = new ArrayList<>();
         books.add(book);
         Library library = new Library(books);
 
         assertThat(books, is(equalTo(library.getBooks())));
     }
-
 }

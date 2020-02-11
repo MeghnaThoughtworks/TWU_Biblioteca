@@ -30,7 +30,7 @@ class BookTest {
     public void shouldReturnAuthorAndYearOfBookPublished() {
         Book book1 = new Book(title,author,yearPublished);
 
-        assertThat(title,is(equalTo(book1.getTitle())));
+        assertThat(author,is(equalTo(book1.getAuthor())));
         assertThat(yearPublished,is(equalTo(book1.getYearPublished())));
     }
 }

@@ -9,10 +9,14 @@ public class BibliotecaUI {
     private static Library library = new Library(books());
     private static Scanner scanner = new Scanner(System.in);
     private final Menu menu;
-    private static boolean loop = false;
+    private static boolean loop = true;
 
     public BibliotecaUI(Menu menu) {
         this.menu = menu;
+    }
+
+    public static void quit() {
+        loop = false;
     }
 
     public void display() {

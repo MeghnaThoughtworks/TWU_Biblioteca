@@ -14,8 +14,7 @@ class QuitTest {
     public void shouldInvokeQuit() {
         quit.execute();
 
-        BibliotecaUI bibliotecaUI = mock(BibliotecaUI.class);
-        verify(bibliotecaUI, times(1)).quit();
+        verify(quit, times(1)).quit();
     }
 
     @Test

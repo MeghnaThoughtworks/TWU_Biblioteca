@@ -13,7 +13,7 @@ class BookTest {
     Integer yearPublished;
 
     @BeforeEach
-    public void init(){
+    public void init() {
         title = "Alchemist";
         author = "Paulo Coelho";
         yearPublished = 1988;

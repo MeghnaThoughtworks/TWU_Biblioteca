@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import static com.twu.biblioteca.BooksFeeder.books;
@@ -9,6 +12,7 @@ public class BibliotecaUI {
     private static Library library = new Library(books());
     private static Scanner scanner = new Scanner(System.in);
     private final Menu menu;
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static boolean loop = true;
 
     public BibliotecaUI(Menu menu) {
@@ -19,7 +23,15 @@ public class BibliotecaUI {
         loop = false;
     }
 
-    public void display() {
+    public static void checkoutBook() throws IOException {
+        String title = reader.readLine();
+        library.checkout(title.toLowerCase());
+//        for (Book book : library.getCheckedOutBooks()) {
+//            System.out.println(book.getTitle());
+//        }
+    }
+
+    public void display() throws IOException {
         System.out.println(WELCOME_MESSAGE);
         printMenu();
     }
@@ -32,7 +44,7 @@ public class BibliotecaUI {
         }
     }
 
-    private void printMenu() {
+    private void printMenu() throws IOException {
         do {
             System.out.println("MENU");
             int i = 0;

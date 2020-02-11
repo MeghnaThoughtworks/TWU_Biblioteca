@@ -9,6 +9,7 @@ public class BibliotecaUI {
     private static Library library = new Library(books());
     private static Scanner scanner = new Scanner(System.in);
     private final Menu menu;
+    private static boolean loop = false;
 
     public BibliotecaUI(Menu menu) {
         this.menu = menu;
@@ -28,13 +29,21 @@ public class BibliotecaUI {
     }
 
     private void printMenu() {
-        System.out.println("MENU");
-        int i = 0;
-        for (Option option : menu.getOptions()) {
-            System.out.println("(" + (i + 1) + ")" + option.toString());
-            i++;
-        }
-        int choice = Integer.parseInt(scanner.next());
-        menu.getOptions().get(choice - 1).execute();
+        do {
+            System.out.println("MENU");
+            int i = 0;
+            for (Option option : menu.getOptions()) {
+                System.out.println("(" + (i + 1) + ")" + option.toString());
+                i++;
+            }
+            int choice = Integer.parseInt(scanner.next());
+            if (choice - 1 >= menu.getOptions().size()) {
+                loop = true;
+                System.out.println("Please enter a valid option!");
+                continue;
+            }
+            menu.getOptions().get(choice - 1).execute();
+        } while (loop);
+
     }
 }

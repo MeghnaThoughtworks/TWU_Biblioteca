@@ -1,13 +1,15 @@
 package com.twu.biblioteca;
 
-public class Menu {
-    private final Option option;
+import java.util.ArrayList;
 
-    public Menu(Option option) {
+public class Menu {
+    private final ArrayList<Option> option;
+
+    public Menu(ArrayList<Option> option) {
         this.option = option;
     }
 
-    public Option getOption() {
+    public ArrayList<Option> getOptions() {
         return option;
     }
 

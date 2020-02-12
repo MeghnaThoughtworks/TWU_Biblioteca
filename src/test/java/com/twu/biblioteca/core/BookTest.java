@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 class BookTest {
     String title;
@@ -31,8 +30,25 @@ class BookTest {
     @Test
     public void shouldDisplayBook(){
         Book book1 = new Book(title,author,yearPublished);
-        String bookDescription = title+" "+author+" "+yearPublished;
+        String bookDescription = String.format("%-30s%-30s%-30s",title,author,yearPublished);
 
         assertThat(bookDescription,is(equalTo(book1.toString())));
+    }
+
+    @Test
+    public void shouldReturnBook() {
+        Book book1 = new Book(title, author, yearPublished);
+        String title = "Alchemist";
+
+        assertThat(book1, is(equalTo(book1.search(title.toLowerCase()))));
+    }
+
+    @Test
+    public void shouldNotReturnBook(){
+        Book book1 = new Book(title, author, yearPublished);
+        String title = "it";
+
+        assertThat(book1, is(not(equalTo(book1.search(title.toLowerCase())))));
+
     }
 }

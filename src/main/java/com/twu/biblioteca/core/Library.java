@@ -12,7 +12,7 @@ public class Library {
 
     private Book findBook(String title, ArrayList<Book> books) {
         for (Book book : books) {
-            if (book.equals(new Book(title, "", 0)))
+            if (book.search(title.toLowerCase()) != null)
                 return book;
         }
         return null;
@@ -28,7 +28,7 @@ public class Library {
 
     public boolean checkedBookStatus(String title) {
         for (Book book : checkedOutBooks) {
-            if (book.equals(new Book(title,"" ,0)))
+            if (book.search(title.toLowerCase()) != null)
                 return true;
         }
         return false;
@@ -44,7 +44,7 @@ public class Library {
 
     public boolean returnedBookStatus(String title) {
         for (Book book : availableBooks) {
-            if (book.equals(new Book(title,"",0)))
+            if (book.search(title.toLowerCase()) != null)
                 return true;
         }
         return false;

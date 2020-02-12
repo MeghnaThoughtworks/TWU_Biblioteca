@@ -18,6 +18,12 @@ public class Book {
         return String.format("%-30s%-30s%-30s",title,author,yearPublished);
     }
 
+    public Book search(String title){
+        if(this.title.toLowerCase().equals(title))
+            return this;
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

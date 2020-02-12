@@ -27,5 +27,6 @@ class MovieTest {
         Movie movie2 = new Movie(title,year,director,movieRating);
 
         assertThat(movie1,is(equalTo(movie2)));
+        assertThat(movie1.hashCode(),is(equalTo(movie2.hashCode())));
     }
 }

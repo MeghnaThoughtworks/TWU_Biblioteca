@@ -8,7 +8,7 @@ import com.twu.biblioteca.options.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.twu.biblioteca.data.BooksFeeder.books;
+import static com.twu.biblioteca.data.DataFeeder.books;
 
 public class BibliotecaApp {
     private static final InputReader inputReader = new InputReader();

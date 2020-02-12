@@ -1,31 +1,30 @@
 package com.twu.biblioteca;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class CheckoutBook implements Option {
-    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private final Library library;
+    private InputReader inputReader;
+    private Library library;
 
-    public CheckoutBook(Library library) {
+    public CheckoutBook(Library library, InputReader inputReader) {
         this.library = library;
+        this.inputReader = inputReader;
     }
 
     @Override
     public String execute() throws IOException {
-        System.out.println("Enter the title of the book: ");
-        if (checkoutBook()) {
-            return Message.CHECKOUT_BOOK_SUCCESS;
+        String title = inputReader.getInput();
+        Book checkedOutBook = library.findBook(title);
+        System.out.println(checkedOutBook);
+        if (checkedOutBook != null) {
+            library.checkout(checkedOutBook);
+            if (library.checkedBookStatus(checkedOutBook)) {
+                return Message.CHECKOUT_BOOK_SUCCESS;
+            }
         }
         return Message.CHECKOUT_BOOK_UNSUCCESS;
     }
 
-    public boolean checkoutBook() throws IOException {
-        String title = reader.readLine();
-        library.checkout(new Book(title,"",0));
-        return library.checkedBookOut(new Book(title,"",0));
-    }
 
     @Override
     public String toString() {

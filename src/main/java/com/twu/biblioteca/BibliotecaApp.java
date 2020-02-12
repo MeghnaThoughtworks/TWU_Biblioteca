@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import static com.twu.biblioteca.BooksFeeder.books;
 
 public class BibliotecaApp {
+    private static final InputReader inputReader = new InputReader();
     private static final Library library = new Library(books());
     private static final Option optionOne = new ListBooks(library);
     private static final Option optionThree = new Quit();
-    private static final Option optionTwo = new CheckoutBook(library);
+    private static final Option optionTwo = new CheckoutBook(library, inputReader);
     private static final Option optionFour = new ReturnBook(library);
 
     public static void main(String[] args) throws IOException {

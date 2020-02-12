@@ -13,13 +13,15 @@ import static org.mockito.Mockito.*;
 class CheckoutBookTest {
     Book book;
     Library library;
+    InputReader inputReader;
     CheckoutBook checkoutBook;
 
     @BeforeEach
-    public void init(){
+    public void init() {
         book = mock(Book.class);
         library = mock(Library.class);
-        checkoutBook = new CheckoutBook(library);
+        inputReader = mock(InputReader.class);
+        checkoutBook = new CheckoutBook(library, inputReader);
     }
 
     @Test
@@ -28,4 +30,32 @@ class CheckoutBookTest {
         assertThat(name, is(equalTo(checkoutBook.toString())));
     }
 
+    @Test
+    public void shouldCheckoutBook() throws IOException {
+        when(inputReader.getInput()).thenReturn("IT");
+        when(library.findBook(inputReader.getInput())).thenReturn(book);
+
+        checkoutBook.execute();
+
+        verify(library, times(1)).checkout(book);
+    }
+
+    @Test
+    public void shouldReturnSuccessMessage() throws IOException {
+        when(inputReader.getInput()).thenReturn("IT");
+        when(library.findBook(inputReader.getInput())).thenReturn(book);
+        when(library.checkedBookStatus(book)).thenReturn(true);
+
+        assertThat(checkoutBook.execute(), is(equalTo(Message.CHECKOUT_BOOK_SUCCESS)));
+    }
+
+    @Test
+    public void shouldReturnUnSuccessMessage() throws IOException {
+        when(inputReader.getInput()).thenReturn("IT");
+        when(library.findBook(inputReader.getInput())).thenReturn(book);
+        when(library.checkedBookStatus(book)).thenReturn(false);
+
+        assertThat(checkoutBook.execute(), is(equalTo(Message.CHECKOUT_BOOK_UNSUCCESS)));
+
+    }
 }

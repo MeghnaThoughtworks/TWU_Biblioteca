@@ -11,6 +11,14 @@ public class Library {
         this.books = books;
     }
 
+    public Book findBook(String title){
+        for (Book book : books) {
+            if(book.equals(new Book(title, "", 0)))
+                return book;
+        }
+        return null;
+    }
+
     public void checkout(Book bookEntered) {
         Book checkedOutBook = null;
         for (Book book : books) {
@@ -23,7 +31,7 @@ public class Library {
         }
     }
 
-    public boolean checkedBookOut(Book bookEntered) {
+    public boolean checkedBookStatus(Book bookEntered) {
         for (Book book : checkedOutBooks) {
             if (book.equals(bookEntered))
                 return true;

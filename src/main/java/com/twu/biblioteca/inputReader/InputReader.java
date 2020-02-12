@@ -8,7 +8,7 @@ public class InputReader {
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     public String getInput() throws IOException {
-        System.out.println("Enter title:");
+        System.out.println("Enter title of the book:");
         return bufferedReader.readLine();
     }
 }

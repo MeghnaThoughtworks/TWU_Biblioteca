@@ -14,5 +14,4 @@ public class Menu {
     public ArrayList<Option> getOptions() {
         return option;
     }
-
 }

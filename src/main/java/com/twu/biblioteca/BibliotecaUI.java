@@ -31,7 +31,7 @@ public class BibliotecaUI {
             if (choice - 1 >= menu.getOptions().size()) {
                 System.out.println("Please enter a valid option!");
             }
-            menu.getOptions().get(choice - 1).execute();
+            System.out.println(menu.getOptions().get(choice - 1).execute());
         }
     }
 }

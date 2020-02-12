@@ -2,8 +2,9 @@ package com.twu.biblioteca;
 
 public class Quit implements Option {
     @Override
-    public void execute() {
+    public String execute() {
         quit();
+        return "";
     }
 
     public void quit(){

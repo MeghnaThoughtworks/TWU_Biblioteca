@@ -52,7 +52,7 @@ public class Library {
         }
     }
 
-    public boolean returnedBook(Book bookEntered) {
+    public boolean returnedBookStatus(Book bookEntered) {
         for (Book book : books) {
             if (book.equals(bookEntered))
                 return true;

@@ -15,7 +15,6 @@ public class CheckoutBook implements Option {
     public String execute() throws IOException {
         String title = inputReader.getInput();
         Book checkedOutBook = library.findBook(title);
-        System.out.println(checkedOutBook);
         if (checkedOutBook != null) {
             library.checkout(checkedOutBook);
             if (library.checkedBookStatus(checkedOutBook)) {

@@ -28,18 +28,18 @@ class LibraryTest {
     @Test
     public void shouldCheckoutABook() {
         library.checkout(book);
-        String expectedResult = "(1) "+book1.toString()+"\n";
+        String expectedResult = "(1) " + book1.toString() + "\n";
 
-        assertThat(expectedResult,is(equalTo(library.toString())));
+        assertThat(expectedResult, is(equalTo(library.toString())));
     }
 
     @Test
-    public void shouldReturnABook(){
+    public void shouldReturnABook() {
         library.checkout(book);
         library.checkout(book1);
         library.returnBook(book);
-        String expectedResult = "(1) "+book.toString()+"\n";
+        String expectedResult = "(1) " + book.toString() + "\n";
 
-        assertThat(expectedResult,is(equalTo(library.toString())));
+        assertThat(expectedResult, is(equalTo(library.toString())));
     }
 }

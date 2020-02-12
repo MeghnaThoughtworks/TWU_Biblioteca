@@ -22,6 +22,4 @@ class QuitTest {
         String name = "Quit";
         assertThat(name, is(equalTo(quit.toString())));
     }
-
-
 }

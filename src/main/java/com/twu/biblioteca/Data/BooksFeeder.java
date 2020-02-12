@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.core.Book;
+
 import java.util.ArrayList;
 
 public class BooksFeeder {

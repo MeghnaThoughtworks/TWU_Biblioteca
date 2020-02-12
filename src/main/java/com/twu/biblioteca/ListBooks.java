@@ -9,15 +9,11 @@ public class ListBooks implements Option {
 
     @Override
     public String execute() {
-        return printBooks();
-    }
-
-    public String  printBooks() {
         return library.toString();
     }
 
     @Override
     public String toString() {
-        return "List Of Books";
+        return "List Books";
     }
 }

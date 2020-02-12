@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.data;
 
 import com.twu.biblioteca.core.Book;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class BooksFeeder {
 
-    static ArrayList<Book> books() {
+    public static ArrayList<Book> books() {
         Book book1 = new Book("Alchemist", "Paulo Coelho", 1988);
         Book book2 = new Book("Murder on the Orient Express", "Agatha Christie", 1956);
         Book book3 = new Book("IT", "Stephen King", 1986);

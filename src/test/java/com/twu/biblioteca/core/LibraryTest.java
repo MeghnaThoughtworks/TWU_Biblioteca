@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.core;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

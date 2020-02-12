@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.options;
 
 public class Quit implements Option {
     @Override

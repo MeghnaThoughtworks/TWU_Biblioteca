@@ -1,15 +1,17 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.interfaces;
+
+import com.twu.biblioteca.options.Option;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.Message.WELCOME_MESSAGE;
+import static com.twu.biblioteca.data.Message.WELCOME_MESSAGE;
 
-public class BibliotecaUI {
+public class Biblioteca {
     private static Scanner scanner = new Scanner(System.in);
     private final Menu menu;
 
-    public BibliotecaUI(Menu menu) {
+    public Biblioteca(Menu menu) {
         this.menu = menu;
     }
 

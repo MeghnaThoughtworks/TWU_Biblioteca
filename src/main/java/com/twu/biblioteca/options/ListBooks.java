@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.options;
+
+import com.twu.biblioteca.core.Library;
 
 public class ListBooks implements Option {
     private final Library library;

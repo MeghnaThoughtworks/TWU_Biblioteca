@@ -1,9 +1,8 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.core;
 
 import java.util.ArrayList;
 
 public class Library {
-
     private ArrayList<Book> books;
     private ArrayList<Book> checkedOutBooks = new ArrayList<>();
 

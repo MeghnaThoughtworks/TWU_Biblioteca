@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.data;
 
 public class Message {
     public static final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book " +

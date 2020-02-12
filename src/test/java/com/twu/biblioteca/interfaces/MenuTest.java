@@ -1,5 +1,8 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.interfaces;
 
+import com.twu.biblioteca.core.Library;
+import com.twu.biblioteca.options.ListBooks;
+import com.twu.biblioteca.options.Option;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 
-class MenuTest {
+public class MenuTest {
 
     @Test
     public void shouldGetMenuOptions() {

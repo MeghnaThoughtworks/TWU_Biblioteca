@@ -1,5 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.core.Library;
+import com.twu.biblioteca.options.ListBooks;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

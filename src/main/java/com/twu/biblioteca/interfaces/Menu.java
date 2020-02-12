@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.interfaces;
+
+import com.twu.biblioteca.options.Option;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,9 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.data.Message;
+import com.twu.biblioteca.inputReader.InputReader;
+import com.twu.biblioteca.core.Book;
+import com.twu.biblioteca.core.Library;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

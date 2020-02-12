@@ -6,6 +6,7 @@ import com.twu.biblioteca.core.Book;
 import com.twu.biblioteca.core.Library;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class CheckoutBook implements Option {
     private InputReader inputReader;
@@ -19,12 +20,9 @@ public class CheckoutBook implements Option {
     @Override
     public String execute() throws IOException {
         String title = inputReader.getInput();
-        Book checkedOutBook = library.findBookInAvailable(title);
-        if (checkedOutBook != null) {
-            library.checkout(checkedOutBook);
-            if (library.checkedBookStatus(checkedOutBook)) {
-                return Message.CHECKOUT_BOOK_SUCCESS;
-            }
+        library.checkout(title);
+        if (library.checkedBookStatus(title)) {
+            return Message.CHECKOUT_BOOK_SUCCESS;
         }
         return Message.CHECKOUT_BOOK_UNSUCCESS;
     }

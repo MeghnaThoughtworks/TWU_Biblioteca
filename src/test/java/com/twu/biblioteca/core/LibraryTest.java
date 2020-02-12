@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.mock;
 
 class LibraryTest {
     Library library;
@@ -17,8 +16,8 @@ class LibraryTest {
 
     @BeforeEach
     public void init() {
-        book = mock(Book.class);
-        book1 = mock(Book.class);
+        book = new Book("1","1",1);
+        book1 = new Book("2","2",2);
         ArrayList<Book> books = new ArrayList<>();
         books.add(book);
         books.add(book1);
@@ -27,7 +26,7 @@ class LibraryTest {
 
     @Test
     public void shouldCheckoutABook() {
-        library.checkout(book);
+        library.checkout("1");
         String expectedResult = "(1) " + book1.toString() + "\n";
 
         assertThat(expectedResult, is(equalTo(library.toString())));
@@ -35,9 +34,9 @@ class LibraryTest {
 
     @Test
     public void shouldReturnABook() {
-        library.checkout(book);
-        library.checkout(book1);
-        library.returnBook(book);
+        library.checkout("1");
+        library.checkout("2");
+        library.returnBook("1");
         String expectedResult = "(1) " + book.toString() + "\n";
 
         assertThat(expectedResult, is(equalTo(library.toString())));

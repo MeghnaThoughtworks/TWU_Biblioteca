@@ -3,14 +3,14 @@ package com.twu.biblioteca.core;
 import java.util.ArrayList;
 
 public class Library {
-    private final ArrayList<Book> books;
+    private final ArrayList<Book> availableBooks;
     private final ArrayList<Book> checkedOutBooks = new ArrayList<>();
 
-    public Library(ArrayList<Book> books) {
-        this.books = books;
+    public Library(ArrayList<Book> availableBooks) {
+        this.availableBooks = availableBooks;
     }
 
-    public Book findBookInAvailable(String title) {
+    private Book findBook(String title, ArrayList<Book> books) {
         for (Book book : books) {
             if (book.equals(new Book(title, "", 0)))
                 return book;
@@ -18,50 +18,33 @@ public class Library {
         return null;
     }
 
-    public Book findBookInCheckedOutBook(String title) {
-        for (Book book : checkedOutBooks) {
-            if (book.equals(new Book(title, " ", 0)))
-                return book;
-        }
-        return null;
-    }
-
-    public void checkout(Book bookEntered) {
-        Book checkedOutBook = null;
-        for (Book book : books) {
-            if (book.equals(bookEntered))
-                checkedOutBook = book;
-        }
+    public void checkout(String title) {
+        Book checkedOutBook = findBook(title, availableBooks);
         if (checkedOutBook != null) {
-            books.remove(checkedOutBook);
+            availableBooks.remove(checkedOutBook);
             checkedOutBooks.add(checkedOutBook);
         }
     }
 
-    public boolean checkedBookStatus(Book bookEntered) {
+    public boolean checkedBookStatus(String title) {
         for (Book book : checkedOutBooks) {
-            if (book.equals(bookEntered))
+            if (book.equals(new Book(title,"" ,0)))
                 return true;
         }
         return false;
     }
 
-    public void returnBook(Book bookEntered) {
-        Book returnedBook = null;
-        for (Book book : this.checkedOutBooks) {
-            if (book.equals(bookEntered))
-                returnedBook = book;
-        }
+    public void returnBook(String title) {
+        Book returnedBook = findBook(title, checkedOutBooks);
         if (returnedBook != null) {
             checkedOutBooks.remove(returnedBook);
-            books.add(returnedBook);
-
+            availableBooks.add(returnedBook);
         }
     }
 
-    public boolean returnedBookStatus(Book bookEntered) {
-        for (Book book : books) {
-            if (book.equals(bookEntered))
+    public boolean returnedBookStatus(String title) {
+        for (Book book : availableBooks) {
+            if (book.equals(new Book(title,"",0)))
                 return true;
         }
         return false;
@@ -71,7 +54,7 @@ public class Library {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         int i = 0;
-        for (Book book : books) {
+        for (Book book : availableBooks) {
             stringBuilder.append("(").append(i + 1).append(") ").append(book).append("\n");
             i++;
         }

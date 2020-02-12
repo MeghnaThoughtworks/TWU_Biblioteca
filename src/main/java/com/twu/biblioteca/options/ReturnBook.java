@@ -19,12 +19,9 @@ public class ReturnBook implements Option {
     @Override
     public String execute() throws IOException {
         String title = inputReader.getInput();
-        Book returnedBook = library.findBookInCheckedOutBook(title);
-        if (returnedBook != null) {
-            library.returnBook(returnedBook);
-            if (library.returnedBookStatus(returnedBook)) {
-                return Message.RETURN_BOOK_SUCCESS;
-            }
+        library.returnBook(title);
+        if (library.returnedBookStatus(title)) {
+            return Message.RETURN_BOOK_SUCCESS;
         }
         return Message.RETURN_BOOK_UNSUCCESS;
     }

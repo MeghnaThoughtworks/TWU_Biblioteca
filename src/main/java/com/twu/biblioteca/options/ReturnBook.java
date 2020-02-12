@@ -8,8 +8,8 @@ import com.twu.biblioteca.core.Library;
 import java.io.IOException;
 
 public class ReturnBook implements Option {
-    private Library library;
-    private InputReader inputReader;
+    private final Library library;
+    private final InputReader inputReader;
 
     public ReturnBook(Library library, InputReader inputReader) {
         this.library = library;
@@ -18,10 +18,8 @@ public class ReturnBook implements Option {
 
     @Override
     public String execute() throws IOException {
-        System.out.println("Enter the title of the book: ");
         String title = inputReader.getInput();
-        Book returnedBook = library.findBook(title);
-        System.out.println(returnedBook);
+        Book returnedBook = library.findBookInCheckedOutBook(title);
         if (returnedBook != null) {
             library.returnBook(returnedBook);
             if (library.returnedBookStatus(returnedBook)) {

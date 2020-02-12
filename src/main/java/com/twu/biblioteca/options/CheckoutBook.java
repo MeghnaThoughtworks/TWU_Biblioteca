@@ -19,7 +19,7 @@ public class CheckoutBook implements Option {
     @Override
     public String execute() throws IOException {
         String title = inputReader.getInput();
-        Book checkedOutBook = library.findBook(title);
+        Book checkedOutBook = library.findBookInAvailable(title);
         if (checkedOutBook != null) {
             library.checkout(checkedOutBook);
             if (library.checkedBookStatus(checkedOutBook)) {

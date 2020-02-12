@@ -37,7 +37,7 @@ class CheckoutBookTest {
     @Test
     public void shouldCheckoutBook() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
-        when(library.findBook(inputReader.getInput())).thenReturn(book);
+        when(library.findBookInAvailable(inputReader.getInput())).thenReturn(book);
 
         checkoutBook.execute();
 
@@ -47,7 +47,7 @@ class CheckoutBookTest {
     @Test
     public void shouldReturnSuccessMessage() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
-        when(library.findBook(inputReader.getInput())).thenReturn(book);
+        when(library.findBookInAvailable(inputReader.getInput())).thenReturn(book);
         when(library.checkedBookStatus(book)).thenReturn(true);
 
         assertThat(checkoutBook.execute(), is(equalTo(Message.CHECKOUT_BOOK_SUCCESS)));
@@ -56,7 +56,7 @@ class CheckoutBookTest {
     @Test
     public void shouldReturnUnSuccessMessage() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
-        when(library.findBook(inputReader.getInput())).thenReturn(book);
+        when(library.findBookInAvailable(inputReader.getInput())).thenReturn(book);
         when(library.checkedBookStatus(book)).thenReturn(false);
 
         assertThat(checkoutBook.execute(), is(equalTo(Message.CHECKOUT_BOOK_UNSUCCESS)));

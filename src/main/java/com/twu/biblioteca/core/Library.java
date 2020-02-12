@@ -3,16 +3,24 @@ package com.twu.biblioteca.core;
 import java.util.ArrayList;
 
 public class Library {
-    private ArrayList<Book> books;
-    private ArrayList<Book> checkedOutBooks = new ArrayList<>();
+    private final ArrayList<Book> books;
+    private final ArrayList<Book> checkedOutBooks = new ArrayList<>();
 
     public Library(ArrayList<Book> books) {
         this.books = books;
     }
 
-    public Book findBook(String title){
+    public Book findBookInAvailable(String title) {
         for (Book book : books) {
-            if(book.equals(new Book(title, "", 0)))
+            if (book.equals(new Book(title, "", 0)))
+                return book;
+        }
+        return null;
+    }
+
+    public Book findBookInCheckedOutBook(String title) {
+        for (Book book : checkedOutBooks) {
+            if (book.equals(new Book(title, " ", 0)))
                 return book;
         }
         return null;

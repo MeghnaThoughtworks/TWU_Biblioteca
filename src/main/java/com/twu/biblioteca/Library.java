@@ -39,6 +39,27 @@ public class Library {
         return false;
     }
 
+    public void returnBook(Book bookEntered) {
+        Book returnedBook = null;
+        for (Book book : this.checkedOutBooks) {
+            if (book.equals(bookEntered))
+                returnedBook = book;
+        }
+        if (returnedBook != null) {
+            checkedOutBooks.remove(returnedBook);
+            books.add(returnedBook);
+
+        }
+    }
+
+    public boolean returnedBook(Book bookEntered) {
+        for (Book book : books) {
+            if (book.equals(bookEntered))
+                return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

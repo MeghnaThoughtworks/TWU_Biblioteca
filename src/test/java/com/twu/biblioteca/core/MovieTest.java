@@ -28,7 +28,4 @@ class MovieTest {
 
         assertThat(movie1,is(equalTo(movie2)));
     }
-
-
-
 }

@@ -20,17 +20,19 @@ class BookTest {
     }
 
     @Test
-    public void shouldReturnBookTitle() {
-        Book book1 = new Book(title,author,yearPublished);
-        String title = "Alchemist";
+    public void shouldEquateTwoBooks() {
+        Book book1 = new Book(title, author, yearPublished);
+        Book book2 = new Book(title,"",0);
 
-        assertThat(title, is(equalTo(book1.getTitle())));
+        assertThat(book1, is(equalTo(book2)));
+        assertThat(book1.hashCode(),is(equalTo(book2.hashCode())));
     }
-    @Test
-    public void shouldReturnAuthorAndYearOfBookPublished() {
-        Book book1 = new Book(title,author,yearPublished);
 
-        assertThat(author,is(equalTo(book1.getAuthor())));
-        assertThat(yearPublished,is(equalTo(book1.getYearPublished())));
+    @Test
+    public void shouldDisplayBook(){
+        Book book1 = new Book(title,author,yearPublished);
+        String bookDescription = title+" "+author+" "+yearPublished;
+
+        assertThat(bookDescription,is(equalTo(book1.toString())));
     }
 }

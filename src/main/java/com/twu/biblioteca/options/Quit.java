@@ -2,7 +2,7 @@ package com.twu.biblioteca.options;
 
 public class Quit implements Option {
     @Override
-    public String execute() {
+    public String onSelect() {
         quit();
         return "";
     }

@@ -3,7 +3,7 @@ package com.twu.biblioteca.options;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Book;
-import com.twu.biblioteca.core.Library;
+import com.twu.biblioteca.core.Catalog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,14 +16,14 @@ import static org.mockito.Mockito.*;
 
 class CheckoutBookTest {
     Book book;
-    Library library;
+    Catalog library;
     InputReader inputReader;
     CheckoutBook checkoutBook;
 
     @BeforeEach
     public void init() {
         book = mock(Book.class);
-        library = mock(Library.class);
+        library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
         checkoutBook = new CheckoutBook(library, inputReader);
     }
@@ -46,7 +46,7 @@ class CheckoutBookTest {
     @Test
     public void shouldReturnSuccessMessage() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
-        when(library.checkedBookStatus(inputReader.getInput())).thenReturn(true);
+        when(library.checkedLibraryObjectStatus(inputReader.getInput())).thenReturn(true);
 
         assertThat(checkoutBook.execute(), is(equalTo(Message.CHECKOUT_BOOK_SUCCESS)));
     }
@@ -54,7 +54,7 @@ class CheckoutBookTest {
     @Test
     public void shouldReturnUnSuccessMessage() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
-        when(library.checkedBookStatus(inputReader.getInput())).thenReturn(false);
+        when(library.checkedLibraryObjectStatus(inputReader.getInput())).thenReturn(false);
 
         assertThat(checkoutBook.execute(), is(equalTo(Message.CHECKOUT_BOOK_UNSUCCESS)));
 

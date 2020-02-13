@@ -15,11 +15,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("%-30s%-30s%-30s",title,author,yearPublished);
+        return String.format("%-30s%-30s%-30s", title, author, yearPublished);
     }
 
-    public Book search(String title){
-        if(this.title.toLowerCase().equals(title))
+    public Book match(String title) {
+        if (this.title.toLowerCase().equals(title))
             return this;
         return null;
     }

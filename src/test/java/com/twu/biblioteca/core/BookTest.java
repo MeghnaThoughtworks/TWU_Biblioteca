@@ -40,7 +40,7 @@ class BookTest {
         Book book1 = new Book(title, author, yearPublished);
         String title = "Alchemist";
 
-        assertThat(book1, is(equalTo(book1.search(title.toLowerCase()))));
+        assertThat(book1, is(equalTo(book1.match(title.toLowerCase()))));
     }
 
     @Test
@@ -48,7 +48,7 @@ class BookTest {
         Book book1 = new Book(title, author, yearPublished);
         String title = "it";
 
-        assertThat(book1, is(not(equalTo(book1.search(title.toLowerCase())))));
+        assertThat(book1, is(not(equalTo(book1.match(title.toLowerCase())))));
 
     }
 }

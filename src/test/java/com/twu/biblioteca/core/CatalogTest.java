@@ -9,8 +9,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-class LibraryTest {
-    Library library;
+class CatalogTest {
+    Catalog<Book> library;
     Book book;
     Book book1;
 
@@ -21,12 +21,12 @@ class LibraryTest {
         ArrayList<Book> books = new ArrayList<>();
         books.add(book);
         books.add(book1);
-        library = new Library(books);
+        library = new Catalog<>(books);
     }
 
     @Test
     public void shouldCheckoutABook() {
-        library.checkout("1");
+        library.checkoutItem("1");
         String expectedResult = "(1) " + book1.toString() + "\n";
 
         assertThat(expectedResult, is(equalTo(library.toString())));
@@ -34,9 +34,9 @@ class LibraryTest {
 
     @Test
     public void shouldReturnABook() {
-        library.checkout("1");
-        library.checkout("2");
-        library.returnBook("1");
+        library.checkoutItem("1");
+        library.checkoutItem("2");
+        library.returnItem("1");
         String expectedResult = "(1) " + book.toString() + "\n";
 
         assertThat(expectedResult, is(equalTo(library.toString())));

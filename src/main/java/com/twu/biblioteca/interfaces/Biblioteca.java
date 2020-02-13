@@ -35,7 +35,7 @@ public class Biblioteca {
                 System.out.println("Please enter a valid option!");
             }
             System.out.println("-------------------------");
-            System.out.println(menu.getOptions().get(choice - 1).execute());
+            System.out.println(menu.getOptions().get(choice - 1).onSelect());
             System.out.println("--------------------------");
         }
     }

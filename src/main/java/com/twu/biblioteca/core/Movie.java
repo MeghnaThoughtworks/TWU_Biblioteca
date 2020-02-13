@@ -23,8 +23,19 @@ public class Movie {
         return Objects.equals(title, movie.title);
     }
 
+    public Movie match(String title) {
+        if (this.title.toLowerCase().equals(title))
+            return this;
+        return null;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(title);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%-30s%-30s%-30s%-30s", title, year, director, movieRating);
     }
 }

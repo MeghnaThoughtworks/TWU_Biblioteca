@@ -1,7 +1,6 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.core.Library;
-import com.twu.biblioteca.options.ListBooks;
+import com.twu.biblioteca.core.Catalog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +10,12 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
 class ListBooksTest {
-    Library library;
+    Catalog library;
     ListBooks listBooks;
 
     @BeforeEach
     public void init() {
-        library = mock(Library.class);
+        library = mock(Catalog.class);
         listBooks = new ListBooks(library);
     }
 

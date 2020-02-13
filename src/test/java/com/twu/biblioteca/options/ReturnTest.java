@@ -3,7 +3,7 @@ package com.twu.biblioteca.options;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Book;
-import com.twu.biblioteca.core.Library;
+import com.twu.biblioteca.core.Catalog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,14 +16,14 @@ import static org.mockito.Mockito.*;
 
 class ReturnBookTest {
     Book book;
-    Library library;
+    Catalog library;
     InputReader inputReader;
     ReturnBook returnBook;
 
     @BeforeEach
     public void init() {
         book = mock(Book.class);
-        library = mock(Library.class);
+        library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
         returnBook = new ReturnBook(library, inputReader);
     }

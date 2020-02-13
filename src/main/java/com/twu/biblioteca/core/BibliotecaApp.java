@@ -15,7 +15,6 @@ public class BibliotecaApp {
     private static final InputReader inputReader = new InputReader();
     private static final Catalog<Book> catalogBook = new Catalog<>(books());
     private static final Catalog<Movie> catalogMovie = new Catalog<>(movies());
-
     private static final Option optionOne = new List<>(catalogBook);
     private static final Option optionTwo = new Checkout<>(catalogBook, inputReader);
     private static final Option optionThree = new Quit();
@@ -33,7 +32,6 @@ public class BibliotecaApp {
         options.add(optionSix);
         options.add(optionSeven);
         options.add(optionThree);
-
         Menu menu = new Menu(options);
         Biblioteca biblioteca = new Biblioteca(menu);
         biblioteca.display();

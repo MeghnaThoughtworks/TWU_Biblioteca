@@ -16,16 +16,16 @@ import static org.mockito.Mockito.*;
 
 class CheckoutTest {
     Book book;
-    Catalog library;
+    Catalog<Book> library;
     InputReader inputReader;
-    Checkout checkout;
+    Checkout<Book> checkout;
 
     @BeforeEach
     public void init() {
         book = mock(Book.class);
         library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        checkout = new Checkout(library, inputReader);
+        checkout = new Checkout<>(library, inputReader);
     }
 
     @Test
@@ -57,6 +57,5 @@ class CheckoutTest {
         when(library.checkedItemStatus(inputReader.getInput())).thenReturn(false);
 
         assertThat(checkout.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_UNSUCCESS)));
-
     }
 }

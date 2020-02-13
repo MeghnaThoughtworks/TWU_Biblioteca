@@ -2,6 +2,7 @@ package com.twu.biblioteca.data;
 
 import com.twu.biblioteca.core.Book;
 import com.twu.biblioteca.core.Movie;
+import com.twu.biblioteca.core.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -38,6 +39,19 @@ class DataFeederTest {
         movies.add(movie2);
 
         assertThat(movies,is(equalTo(DataFeeder.movies())));
+    }
+
+    @Test
+    public void shouldReturnListOfUsers(){
+        String libraryNumber = "1234";
+        String password = "123";
+        User user1 = new User(libraryNumber,password);
+        User user2 = new User("123","12");
+        ArrayList<User> users = new ArrayList<>();
+        users.add(user1);
+        users.add(user2);
+
+        assertThat(users,is(equalTo(DataFeeder.users())));
     }
 }
 

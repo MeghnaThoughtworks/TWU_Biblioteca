@@ -1,7 +1,7 @@
 package com.twu.biblioteca.options;
 
 import com.twu.biblioteca.core.Catalog;
-import com.twu.biblioteca.core.LibraryItem;
+import com.twu.biblioteca.interfaces.LibraryItem;
 
 public class List<T extends LibraryItem> implements Option {
     private final Catalog<T> libraryObject;

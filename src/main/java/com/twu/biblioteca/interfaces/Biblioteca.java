@@ -1,5 +1,6 @@
 package com.twu.biblioteca.interfaces;
 
+import com.twu.biblioteca.core.Menu;
 import com.twu.biblioteca.options.Option;
 
 import java.io.IOException;

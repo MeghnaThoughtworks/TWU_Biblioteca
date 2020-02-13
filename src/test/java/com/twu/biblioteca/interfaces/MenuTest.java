@@ -1,6 +1,7 @@
 package com.twu.biblioteca.interfaces;
 
 import com.twu.biblioteca.core.Catalog;
+import com.twu.biblioteca.core.Menu;
 import com.twu.biblioteca.options.List;
 import com.twu.biblioteca.options.Option;
 import org.hamcrest.CoreMatchers;

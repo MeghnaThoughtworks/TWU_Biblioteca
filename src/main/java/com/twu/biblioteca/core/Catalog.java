@@ -1,5 +1,7 @@
 package com.twu.biblioteca.core;
 
+import com.twu.biblioteca.interfaces.LibraryItem;
+
 import java.util.ArrayList;
 
 public class Catalog<T extends LibraryItem> {

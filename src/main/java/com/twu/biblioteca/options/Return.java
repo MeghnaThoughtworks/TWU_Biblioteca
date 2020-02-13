@@ -1,6 +1,6 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.core.LibraryItem;
+import com.twu.biblioteca.interfaces.LibraryItem;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Catalog;

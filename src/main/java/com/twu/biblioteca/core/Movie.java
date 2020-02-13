@@ -1,5 +1,7 @@
 package com.twu.biblioteca.core;
 
+import com.twu.biblioteca.interfaces.LibraryItem;
+
 import java.util.Objects;
 
 public class Movie extends LibraryItem {

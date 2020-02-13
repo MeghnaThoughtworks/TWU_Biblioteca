@@ -1,4 +1,4 @@
-package com.twu.biblioteca.interfaces;
+package com.twu.biblioteca.core;
 
 import com.twu.biblioteca.options.Option;
 

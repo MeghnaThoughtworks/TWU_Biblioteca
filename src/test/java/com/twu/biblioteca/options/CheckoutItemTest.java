@@ -1,5 +1,6 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.core.User;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Book;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -19,13 +21,14 @@ class CheckoutItemTest {
     Catalog<Book> library;
     InputReader inputReader;
     CheckoutItem<Book> checkoutItem;
+    ArrayList<User> users;
 
     @BeforeEach
     public void init() {
         book = mock(Book.class);
         library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        checkoutItem = new CheckoutItem<>(library, inputReader);
+        checkoutItem = new CheckoutItem<>(library, inputReader, users);
     }
 
     @Test
@@ -35,7 +38,7 @@ class CheckoutItemTest {
     }
 
     @Test
-    public void shouldCheckoutBook() throws IOException {
+    public void shouldCheckoutBook() throws IOException, UserNotFoundException {
         when(inputReader.getInput()).thenReturn("IT");
 
         checkoutItem.onSelect();
@@ -44,7 +47,7 @@ class CheckoutItemTest {
     }
 
     @Test
-    public void shouldReturnSuccessMessage() throws IOException {
+    public void shouldReturnSuccessMessage() throws IOException, UserNotFoundException {
         when(inputReader.getInput()).thenReturn("IT");
         when(library.checkedItemStatus(inputReader.getInput())).thenReturn(true);
 
@@ -52,7 +55,7 @@ class CheckoutItemTest {
     }
 
     @Test
-    public void shouldReturnUnSuccessMessage() throws IOException {
+    public void shouldReturnUnSuccessMessage() throws IOException, UserNotFoundException {
         when(inputReader.getInput()).thenReturn("IT");
         when(library.checkedItemStatus(inputReader.getInput())).thenReturn(false);
 

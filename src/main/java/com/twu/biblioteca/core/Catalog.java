@@ -13,40 +13,40 @@ public class Catalog<T extends LibraryItem> {
     }
 
     private T findItem(String title, ArrayList<T> libraryObjects) {
-        for (T libraryObject : libraryObjects) {
-            if (libraryObject.match(title.toLowerCase()) != null)
-                return libraryObject;
+        for (T libraryItem : libraryObjects) {
+            if (libraryItem.match(title.toLowerCase()) != null)
+                return libraryItem;
         }
         return null;
     }
 
     public void checkoutItem(String title) {
-        T libraryObject = findItem(title, availableLibraryObjects);
-        if (libraryObject != null) {
-            availableLibraryObjects.remove(libraryObject);
-            checkedOutLibraryObject.add(libraryObject);
+        T libraryItem = findItem(title, availableLibraryObjects);
+        if (libraryItem != null) {
+            availableLibraryObjects.remove(libraryItem);
+            checkedOutLibraryObject.add(libraryItem);
         }
     }
 
     public boolean checkedItemStatus(String title) {
-        for (T libraryObject : checkedOutLibraryObject) {
-            if (libraryObject.match(title.toLowerCase()) != null)
+        for (T libraryItem : checkedOutLibraryObject) {
+            if (libraryItem.match(title.toLowerCase()) != null)
                 return true;
         }
         return false;
     }
 
     public void returnItem(String title) {
-        T libraryObject = findItem(title, checkedOutLibraryObject);
-        if (libraryObject != null) {
-            checkedOutLibraryObject.remove(libraryObject);
-            availableLibraryObjects.add(libraryObject);
+        T libraryItem = findItem(title, checkedOutLibraryObject);
+        if (libraryItem != null) {
+            checkedOutLibraryObject.remove(libraryItem);
+            availableLibraryObjects.add(libraryItem);
         }
     }
 
     public boolean returnItemStatus(String title) {
-        for (T libraryObject : availableLibraryObjects) {
-            if (libraryObject.match(title.toLowerCase()) != null)
+        for (T libraryItem : availableLibraryObjects) {
+            if (libraryItem.match(title.toLowerCase()) != null)
                 return true;
         }
         return false;

@@ -1,6 +1,7 @@
 package com.twu.biblioteca.interfaces;
 
 import com.twu.biblioteca.core.Menu;
+import com.twu.biblioteca.options.UserNotFoundException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -15,12 +16,12 @@ public class Biblioteca {
         this.menu = menu;
     }
 
-    public void display() throws IOException {
+    public void display() throws IOException, UserNotFoundException {
         System.out.println(WELCOME_MESSAGE);
         printMenu();
     }
 
-    private void printMenu() throws IOException {
+    private void printMenu() throws IOException, UserNotFoundException {
         //noinspection InfiniteLoopStatement
         while (true) {
             System.out.println("##########MENU##########");

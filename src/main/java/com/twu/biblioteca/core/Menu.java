@@ -1,6 +1,6 @@
 package com.twu.biblioteca.core;
 
-import com.twu.biblioteca.options.Option;
+import com.twu.biblioteca.interfaces.Option;
 
 import java.util.ArrayList;
 

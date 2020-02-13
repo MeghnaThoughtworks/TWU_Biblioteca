@@ -2,8 +2,7 @@ package com.twu.biblioteca.interfaces;
 
 import com.twu.biblioteca.core.Catalog;
 import com.twu.biblioteca.core.Menu;
-import com.twu.biblioteca.options.List;
-import com.twu.biblioteca.options.Option;
+import com.twu.biblioteca.options.ListItems;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +17,7 @@ public class MenuTest {
     @Test
     public void shouldGetMenuOptions() {
         ArrayList<Option> options = new ArrayList<>();
-        options.add(new List(mock(Catalog.class)));
+        options.add(new ListItems(mock(Catalog.class)));
         Menu menu = new Menu(options);
 
         assertThat(options, is(CoreMatchers.equalTo(menu.getOptions())));

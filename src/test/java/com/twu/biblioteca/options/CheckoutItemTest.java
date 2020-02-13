@@ -14,31 +14,31 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
-class CheckoutTest {
+class CheckoutItemTest {
     Book book;
     Catalog<Book> library;
     InputReader inputReader;
-    Checkout<Book> checkout;
+    CheckoutItem<Book> checkoutItem;
 
     @BeforeEach
     public void init() {
         book = mock(Book.class);
         library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        checkout = new Checkout<>(library, inputReader);
+        checkoutItem = new CheckoutItem<>(library, inputReader);
     }
 
     @Test
     public void shouldDisplayName() {
         String name = "Checkout Book";
-        assertThat(name, is(equalTo(checkout.toString())));
+        assertThat(name, is(equalTo(checkoutItem.toString())));
     }
 
     @Test
     public void shouldCheckoutBook() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
 
-        checkout.onSelect();
+        checkoutItem.onSelect();
 
         verify(library, times(1)).checkoutItem(inputReader.getInput());
     }
@@ -48,7 +48,7 @@ class CheckoutTest {
         when(inputReader.getInput()).thenReturn("IT");
         when(library.checkedItemStatus(inputReader.getInput())).thenReturn(true);
 
-        assertThat(checkout.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_SUCCESS)));
+        assertThat(checkoutItem.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_SUCCESS)));
     }
 
     @Test
@@ -56,6 +56,6 @@ class CheckoutTest {
         when(inputReader.getInput()).thenReturn("IT");
         when(library.checkedItemStatus(inputReader.getInput())).thenReturn(false);
 
-        assertThat(checkout.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_UNSUCCESS)));
+        assertThat(checkoutItem.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_UNSUCCESS)));
     }
 }

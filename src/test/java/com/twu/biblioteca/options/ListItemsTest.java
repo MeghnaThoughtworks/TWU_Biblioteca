@@ -9,25 +9,25 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
-class ListTest {
+class ListItemsTest {
     Catalog library;
-    List list;
+    ListItems listItems;
 
     @BeforeEach
     public void init() {
         library = mock(Catalog.class);
-        list = new List(library);
+        listItems = new ListItems(library);
     }
 
     @Test
     public void shouldInvokeQuit() {
-        assertThat(list.onSelect(), is(equalTo(library.toString())));
+        assertThat(listItems.onSelect(), is(equalTo(library.toString())));
     }
 
     @Test
     public void shouldDisplayName() {
         String name = "List Books";
 
-        assertThat(name, is(equalTo(list.toString())));
+        assertThat(name, is(equalTo(listItems.toString())));
     }
 }

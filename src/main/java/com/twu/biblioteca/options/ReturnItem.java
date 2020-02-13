@@ -4,14 +4,15 @@ import com.twu.biblioteca.interfaces.LibraryItem;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Catalog;
+import com.twu.biblioteca.interfaces.Option;
 
 import java.io.IOException;
 
-public class Checkout<T extends LibraryItem> implements Option {
+public class ReturnItem<T extends LibraryItem> implements Option {
     private final Catalog<T> catalog;
     private final InputReader inputReader;
 
-    public Checkout(Catalog<T> catalog, InputReader inputReader) {
+    public ReturnItem(Catalog<T> catalog, InputReader inputReader) {
         this.catalog = catalog;
         this.inputReader = inputReader;
     }
@@ -19,15 +20,15 @@ public class Checkout<T extends LibraryItem> implements Option {
     @Override
     public String onSelect() throws IOException {
         String title = inputReader.getInput();
-        catalog.checkoutItem(title);
-        if (catalog.checkedItemStatus(title)) {
-            return Message.CHECKOUT_BOOK_SUCCESS;
+        catalog.returnItem(title);
+        if (catalog.returnItemStatus(title)) {
+            return Message.RETURN_BOOK_SUCCESS;
         }
-        return Message.CHECKOUT_BOOK_UNSUCCESS;
+        return Message.RETURN_BOOK_UNSUCCESS;
     }
 
     @Override
     public String toString() {
-        return "Checkout " + catalog.getClass().toString();
+        return "Return";
     }
 }

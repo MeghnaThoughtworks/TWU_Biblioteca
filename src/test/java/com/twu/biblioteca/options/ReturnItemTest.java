@@ -14,24 +14,24 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
-class ReturnTest {
+class ReturnItemTest {
     Book book;
     Catalog library;
     InputReader inputReader;
-    Return aReturn;
+    ReturnItem aReturnItem;
 
     @BeforeEach
     public void init() {
         book = mock(Book.class);
         library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        aReturn = new Return(library, inputReader);
+        aReturnItem = new ReturnItem(library, inputReader);
     }
 
     @Test
     public void shouldDisplayName(){
         String name = "Return Book";
-        assertThat(name, is(equalTo(aReturn.toString())));
+        assertThat(name, is(equalTo(aReturnItem.toString())));
     }
 
     @Test
@@ -39,7 +39,7 @@ class ReturnTest {
         when(inputReader.getInput()).thenReturn("IT");
         when(library.returnItemStatus(inputReader.getInput())).thenReturn(true);
 
-        aReturn.onSelect();
+        aReturnItem.onSelect();
 
         verify(library,times(1)).returnItem(inputReader.getInput());
     }
@@ -49,7 +49,7 @@ class ReturnTest {
         when(inputReader.getInput()).thenReturn("IT");
         when(library.returnItemStatus(inputReader.getInput())).thenReturn(true);
 
-        assertThat(aReturn.onSelect(), is(equalTo(Message.RETURN_BOOK_SUCCESS)));
+        assertThat(aReturnItem.onSelect(), is(equalTo(Message.RETURN_BOOK_SUCCESS)));
     }
 
     @Test
@@ -57,6 +57,6 @@ class ReturnTest {
         when(inputReader.getInput()).thenReturn("IT");
         when(library.returnItemStatus(inputReader.getInput())).thenReturn(false);
 
-        assertThat(aReturn.onSelect(), is(equalTo(Message.RETURN_BOOK_UNSUCCESS)));
+        assertThat(aReturnItem.onSelect(), is(equalTo(Message.RETURN_BOOK_UNSUCCESS)));
     }
 }

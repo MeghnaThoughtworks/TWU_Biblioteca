@@ -2,11 +2,12 @@ package com.twu.biblioteca.options;
 
 import com.twu.biblioteca.core.Catalog;
 import com.twu.biblioteca.interfaces.LibraryItem;
+import com.twu.biblioteca.interfaces.Option;
 
-public class List<T extends LibraryItem> implements Option {
+public class ListItems<T extends LibraryItem> implements Option {
     private final Catalog<T> libraryObject;
 
-    public List(Catalog<T> libraryObject1) {
+    public ListItems(Catalog<T> libraryObject1) {
         this.libraryObject = libraryObject1;
     }
 
@@ -17,6 +18,6 @@ public class List<T extends LibraryItem> implements Option {
 
     @Override
     public String toString() {
-        return "List " + libraryObject.getClass().getSuperclass().toString();
+        return "List";
     }
 }

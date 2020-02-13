@@ -2,7 +2,7 @@ package com.twu.biblioteca.core;
 
 import java.util.Objects;
 
-public class Movie extends LibraryObject {
+public class Movie extends LibraryItem {
     private final String title;
     private final Integer year;
     private final String director;

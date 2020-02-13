@@ -1,13 +1,13 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.core.LibraryObject;
+import com.twu.biblioteca.core.LibraryItem;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Catalog;
 
 import java.io.IOException;
 
-public class Return<T extends LibraryObject> implements Option {
+public class Return<T extends LibraryItem> implements Option {
     private final Catalog<T> catalog;
     private final InputReader inputReader;
 

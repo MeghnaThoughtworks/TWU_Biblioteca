@@ -2,7 +2,7 @@ package com.twu.biblioteca.core;
 
 import java.util.Objects;
 
-public class Book extends LibraryObject {
+public class Book extends LibraryItem {
     private final String title;
     private final String author;
     private final int yearPublished;

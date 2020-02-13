@@ -2,7 +2,7 @@ package com.twu.biblioteca.core;
 
 import java.util.ArrayList;
 
-public class Catalog<T extends LibraryObject> {
+public class Catalog<T extends LibraryItem> {
     private final ArrayList<T> availableLibraryObjects;
     private final ArrayList<T> checkedOutLibraryObject = new ArrayList<>();
 

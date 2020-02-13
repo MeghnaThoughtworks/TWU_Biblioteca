@@ -14,49 +14,49 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
-class ReturnBookTest {
+class ReturnTest {
     Book book;
     Catalog library;
     InputReader inputReader;
-    ReturnBook returnBook;
+    Return aReturn;
 
     @BeforeEach
     public void init() {
         book = mock(Book.class);
         library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        returnBook = new ReturnBook(library, inputReader);
+        aReturn = new Return(library, inputReader);
     }
 
     @Test
     public void shouldDisplayName(){
         String name = "Return Book";
-        assertThat(name, is(equalTo(returnBook.toString())));
+        assertThat(name, is(equalTo(aReturn.toString())));
     }
 
     @Test
     public void shouldReturnBook() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
-        when(library.returnedBookStatus(inputReader.getInput())).thenReturn(true);
+        when(library.returnItemStatus(inputReader.getInput())).thenReturn(true);
 
-        returnBook.execute();
+        aReturn.onSelect();
 
-        verify(library,times(1)).returnBook(inputReader.getInput());
+        verify(library,times(1)).returnItem(inputReader.getInput());
     }
 
     @Test
     public void shouldReturnSuccessMessage() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
-        when(library.returnedBookStatus(inputReader.getInput())).thenReturn(true);
+        when(library.returnItemStatus(inputReader.getInput())).thenReturn(true);
 
-        assertThat(returnBook.execute(), is(equalTo(Message.RETURN_BOOK_SUCCESS)));
+        assertThat(aReturn.onSelect(), is(equalTo(Message.RETURN_BOOK_SUCCESS)));
     }
 
     @Test
     public void shouldReturnUnSuccessMessage() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
-        when(library.returnedBookStatus(inputReader.getInput())).thenReturn(false);
+        when(library.returnItemStatus(inputReader.getInput())).thenReturn(false);
 
-        assertThat(returnBook.execute(), is(equalTo(Message.RETURN_BOOK_UNSUCCESS)));
+        assertThat(aReturn.onSelect(), is(equalTo(Message.RETURN_BOOK_UNSUCCESS)));
     }
 }

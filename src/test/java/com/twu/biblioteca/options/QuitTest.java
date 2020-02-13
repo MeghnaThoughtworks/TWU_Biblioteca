@@ -1,6 +1,5 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.options.Quit;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -13,7 +12,7 @@ class QuitTest {
 
     @Test
     public void shouldInvokeQuit() {
-        quit.execute();
+        quit.onSelect();
 
         verify(quit, times(1)).quit();
     }

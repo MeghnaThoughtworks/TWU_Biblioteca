@@ -14,49 +14,49 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
-class CheckoutBookTest {
+class CheckoutTest {
     Book book;
     Catalog library;
     InputReader inputReader;
-    CheckoutBook checkoutBook;
+    Checkout checkout;
 
     @BeforeEach
     public void init() {
         book = mock(Book.class);
         library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        checkoutBook = new CheckoutBook(library, inputReader);
+        checkout = new Checkout(library, inputReader);
     }
 
     @Test
     public void shouldDisplayName() {
         String name = "Checkout Book";
-        assertThat(name, is(equalTo(checkoutBook.toString())));
+        assertThat(name, is(equalTo(checkout.toString())));
     }
 
     @Test
     public void shouldCheckoutBook() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
 
-        checkoutBook.execute();
+        checkout.onSelect();
 
-        verify(library, times(1)).checkout(inputReader.getInput());
+        verify(library, times(1)).checkoutItem(inputReader.getInput());
     }
 
     @Test
     public void shouldReturnSuccessMessage() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
-        when(library.checkedLibraryObjectStatus(inputReader.getInput())).thenReturn(true);
+        when(library.checkedItemStatus(inputReader.getInput())).thenReturn(true);
 
-        assertThat(checkoutBook.execute(), is(equalTo(Message.CHECKOUT_BOOK_SUCCESS)));
+        assertThat(checkout.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_SUCCESS)));
     }
 
     @Test
     public void shouldReturnUnSuccessMessage() throws IOException {
         when(inputReader.getInput()).thenReturn("IT");
-        when(library.checkedLibraryObjectStatus(inputReader.getInput())).thenReturn(false);
+        when(library.checkedItemStatus(inputReader.getInput())).thenReturn(false);
 
-        assertThat(checkoutBook.execute(), is(equalTo(Message.CHECKOUT_BOOK_UNSUCCESS)));
+        assertThat(checkout.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_UNSUCCESS)));
 
     }
 }

@@ -2,49 +2,49 @@ package com.twu.biblioteca.core;
 
 import java.util.ArrayList;
 
-public class Library<T extends LibraryObject> {
+public class Catalog<T extends LibraryObject> {
     private final ArrayList<T> availableLibraryObjects;
     private final ArrayList<T> checkedOutLibraryObject = new ArrayList<>();
 
-    public Library(ArrayList<T> availableLibraryObjects) {
+    public Catalog(ArrayList<T> availableLibraryObjects) {
         this.availableLibraryObjects = availableLibraryObjects;
     }
 
-    private T findLibraryObject(String title, ArrayList<T> libraryObjects) {
+    private T findItem(String title, ArrayList<T> libraryObjects) {
         for (T libraryObject : libraryObjects) {
-            if (libraryObject.search(title.toLowerCase()) != null)
+            if (libraryObject.match(title.toLowerCase()) != null)
                 return libraryObject;
         }
         return null;
     }
 
-    public void checkout(String title) {
-        T libraryObject = findLibraryObject(title, availableLibraryObjects);
+    public void checkoutItem(String title) {
+        T libraryObject = findItem(title, availableLibraryObjects);
         if (libraryObject != null) {
             availableLibraryObjects.remove(libraryObject);
             checkedOutLibraryObject.add(libraryObject);
         }
     }
 
-    public boolean checkedLibraryObjectStatus(String title) {
+    public boolean checkedItemStatus(String title) {
         for (T libraryObject : checkedOutLibraryObject) {
-            if (libraryObject.search(title.toLowerCase()) != null)
+            if (libraryObject.match(title.toLowerCase()) != null)
                 return true;
         }
         return false;
     }
 
-    public void returnBook(String title) {
-        T libraryObject = findLibraryObject(title, checkedOutLibraryObject);
+    public void returnItem(String title) {
+        T libraryObject = findItem(title, checkedOutLibraryObject);
         if (libraryObject != null) {
             checkedOutLibraryObject.remove(libraryObject);
             availableLibraryObjects.add(libraryObject);
         }
     }
 
-    public boolean returnedBookStatus(String title) {
+    public boolean returnItemStatus(String title) {
         for (T libraryObject : availableLibraryObjects) {
-            if (libraryObject.search(title.toLowerCase()) != null)
+            if (libraryObject.match(title.toLowerCase()) != null)
                 return true;
         }
         return false;

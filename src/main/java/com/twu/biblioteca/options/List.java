@@ -3,15 +3,15 @@ package com.twu.biblioteca.options;
 import com.twu.biblioteca.core.Catalog;
 import com.twu.biblioteca.core.LibraryObject;
 
-public class ListBooks<T extends LibraryObject> implements Option {
+public class List<T extends LibraryObject> implements Option {
     private final Catalog<T> libraryObject;
 
-    public ListBooks(Catalog<T> libraryObject1) {
+    public List(Catalog<T> libraryObject1) {
         this.libraryObject = libraryObject1;
     }
 
     @Override
-    public String execute() {
+    public String onSelect() {
         return libraryObject.toString();
     }
 

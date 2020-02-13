@@ -7,20 +7,20 @@ import com.twu.biblioteca.core.Catalog;
 
 import java.io.IOException;
 
-public class CheckoutBook<T extends LibraryObject> implements Option {
-    private final Catalog<T> libraryBook;
+public class Checkout<T extends LibraryObject> implements Option {
+    private final Catalog<T> catalog;
     private final InputReader inputReader;
 
-    public CheckoutBook(Catalog<T> libraryBook, InputReader inputReader) {
-        this.libraryBook = libraryBook;
+    public Checkout(Catalog<T> catalog, InputReader inputReader) {
+        this.catalog = catalog;
         this.inputReader = inputReader;
     }
 
     @Override
-    public String execute() throws IOException {
+    public String onSelect() throws IOException {
         String title = inputReader.getInput();
-        libraryBook.checkout(title);
-        if (libraryBook.checkedLibraryObjectStatus(title)) {
+        catalog.checkoutItem(title);
+        if (catalog.checkedItemStatus(title)) {
             return Message.CHECKOUT_BOOK_SUCCESS;
         }
         return Message.CHECKOUT_BOOK_UNSUCCESS;
@@ -28,6 +28,6 @@ public class CheckoutBook<T extends LibraryObject> implements Option {
 
     @Override
     public String toString() {
-        return "Checkout " + libraryBook.getClass().toString();
+        return "Checkout " + catalog.getClass().toString();
     }
 }

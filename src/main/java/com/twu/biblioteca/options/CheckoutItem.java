@@ -43,7 +43,7 @@ public class CheckoutItem<T extends LibraryItem> implements Option {
 
     private boolean login(String number, String password) {
         for (User user : users) {
-            if (user.equals(new User(number,password)))
+            if (user.equals(new User(number, password)))
                 return true;
         }
         return false;

@@ -21,18 +21,18 @@ class BookTest {
     @Test
     public void shouldEquateTwoBooks() {
         Book book1 = new Book(title, author, yearPublished);
-        Book book2 = new Book(title,"",0);
+        Book book2 = new Book(title, "", 0);
 
         assertThat(book1, is(equalTo(book2)));
-        assertThat(book1.hashCode(),is(equalTo(book2.hashCode())));
+        assertThat(book1.hashCode(), is(equalTo(book2.hashCode())));
     }
 
     @Test
-    public void shouldDisplayBook(){
-        Book book1 = new Book(title,author,yearPublished);
-        String bookDescription = String.format("%-30s%-30s%-30s",title,author,yearPublished);
+    public void shouldDisplayBook() {
+        Book book1 = new Book(title, author, yearPublished);
+        String bookDescription = String.format("%-30s%-30s%-30s", title, author, yearPublished);
 
-        assertThat(bookDescription,is(equalTo(book1.toString())));
+        assertThat(bookDescription, is(equalTo(book1.toString())));
     }
 
     @Test
@@ -44,7 +44,7 @@ class BookTest {
     }
 
     @Test
-    public void shouldNotReturnBook(){
+    public void shouldNotReturnBook() {
         Book book1 = new Book(title, author, yearPublished);
         String title = "it";
 
@@ -52,9 +52,9 @@ class BookTest {
     }
 
     @Test
-    public void shouldReturnBookIfTitleMatch(){
-        Book book1 = new Book(title,author,yearPublished);
+    public void shouldReturnBookIfTitleMatch() {
+        Book book1 = new Book(title, author, yearPublished);
 
-        assertThat(book1.match(title),is(equalTo(book1)));
+        assertThat(book1.match(title), is(equalTo(book1)));
     }
 }

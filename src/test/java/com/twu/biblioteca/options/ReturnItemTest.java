@@ -33,7 +33,7 @@ class ReturnItemTest {
     }
 
     @Test
-    public void shouldDisplayName(){
+    public void shouldDisplayName() {
         String name = "Return Book";
 
         assertThat(name, is(equalTo(aReturnItem.toString())));
@@ -46,7 +46,7 @@ class ReturnItemTest {
 
         aReturnItem.onSelect();
 
-        verify(library,times(1)).returnItem(inputReader.getTitle());
+        verify(library, times(1)).returnItem(inputReader.getTitle());
     }
 
     @Test
@@ -56,7 +56,7 @@ class ReturnItemTest {
 
         aReturnItem.onSelect();
 
-        verify(outputUI,times(1)).display(Message.RETURN_BOOK_SUCCESS);
+        verify(outputUI, times(1)).display(Message.RETURN_BOOK_SUCCESS);
     }
 
     @Test
@@ -66,6 +66,6 @@ class ReturnItemTest {
 
         aReturnItem.onSelect();
 
-        verify(outputUI,times(1)).display(Message.RETURN_BOOK_UNSUCCESS);
+        verify(outputUI, times(1)).display(Message.RETURN_BOOK_UNSUCCESS);
     }
 }

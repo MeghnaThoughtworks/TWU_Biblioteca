@@ -18,7 +18,7 @@ class DataFeederTest {
     Float movieRating = 8.6f;
 
     @Test
-    public void shouldReturnListOfBooks(){
+    public void shouldReturnListOfBooks() {
         Book book1 = new Book("Alchemist", "Paulo Coelho", 1988);
         Book book2 = new Book("Murder on the Orient Express", "Agatha Christie", 1956);
         Book book3 = new Book("IT", "Stephen King", 1986);
@@ -27,31 +27,31 @@ class DataFeederTest {
         books.add(book2);
         books.add(book3);
 
-        assertThat(books,is(equalTo(DataFeeder.books())));
+        assertThat(books, is(equalTo(DataFeeder.books())));
     }
 
     @Test
-    public void shouldReturnListOfMovies(){
-        Movie movie1 = new Movie(title,year,director,movieRating);
-        Movie movie2 = new Movie("1917",2020,"Sam Mender",8.5f);
+    public void shouldReturnListOfMovies() {
+        Movie movie1 = new Movie(title, year, director, movieRating);
+        Movie movie2 = new Movie("1917", 2020, "Sam Mender", 8.5f);
         ArrayList<Movie> movies = new ArrayList<>();
         movies.add(movie1);
         movies.add(movie2);
 
-        assertThat(movies,is(equalTo(DataFeeder.movies())));
+        assertThat(movies, is(equalTo(DataFeeder.movies())));
     }
 
     @Test
-    public void shouldReturnListOfUsers(){
+    public void shouldReturnListOfUsers() {
         String libraryNumber = "1234";
         String password = "123";
-        User user1 = new User(libraryNumber,password);
-        User user2 = new User("123","12");
+        User user1 = new User(libraryNumber, password);
+        User user2 = new User("123", "12");
         ArrayList<User> users = new ArrayList<>();
         users.add(user1);
         users.add(user2);
 
-        assertThat(users,is(equalTo(DataFeeder.users())));
+        assertThat(users, is(equalTo(DataFeeder.users())));
     }
 }
 

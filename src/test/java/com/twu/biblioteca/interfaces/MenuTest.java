@@ -1,9 +1,6 @@
 package com.twu.biblioteca.interfaces;
 
-import com.twu.biblioteca.core.Book;
-import com.twu.biblioteca.core.Catalog;
 import com.twu.biblioteca.core.Menu;
-import com.twu.biblioteca.options.ListItems;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 

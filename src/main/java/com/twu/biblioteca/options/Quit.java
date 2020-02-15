@@ -8,7 +8,7 @@ public class Quit implements Option {
         quit();
     }
 
-    public void quit(){
+    public void quit() {
         System.exit(0);
     }
 

@@ -1,6 +1,5 @@
 package com.twu.biblioteca.options;
 
-import com.twu.biblioteca.core.Menu;
 import com.twu.biblioteca.core.User;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
@@ -18,14 +17,15 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 
+
 class CheckoutItemTest {
     Book book;
     Catalog<Book> bookCatalog;
     InputReader inputReader;
     CheckoutItem<Book> checkoutItem;
     OutputUI outputUI;
-    User user = new User("123","12");
-    ArrayList<User> users = new ArrayList<>(){{
+    User user = new User("123", "12");
+    ArrayList<User> users = new ArrayList<>() {{
         add(user);
     }};
 
@@ -41,6 +41,7 @@ class CheckoutItemTest {
     @Test
     public void shouldDisplayName() {
         String name = "Checkout Book";
+
         assertThat(name, is(equalTo(checkoutItem.toString())));
     }
 
@@ -64,7 +65,7 @@ class CheckoutItemTest {
 
         checkoutItem.onSelect();
 
-        verify(outputUI,times(1)).display(Message.CHECKOUT_BOOK_SUCCESS);
+        verify(outputUI, times(1)).display(Message.CHECKOUT_BOOK_SUCCESS);
     }
 
     @Test
@@ -76,6 +77,6 @@ class CheckoutItemTest {
 
         checkoutItem.onSelect();
 
-        verify(outputUI,times(1)).display(Message.CHECKOUT_BOOK_UNSUCCESS);
+        verify(outputUI, times(1)).display(Message.CHECKOUT_BOOK_UNSUCCESS);
     }
 }

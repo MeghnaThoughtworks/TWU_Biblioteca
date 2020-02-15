@@ -49,26 +49,26 @@ class CatalogTest {
     public void shouldReturnTrueCheckedOutStatus() {
         bookCatalog.checkoutItem("1", user);
 
-        assertThat(bookCatalog.checkedItemStatus("1",user),is(equalTo(true)));
+        assertThat(bookCatalog.checkedItemStatus("1", user), is(equalTo(true)));
     }
 
     @Test
     public void shouldReturnFalseCheckedOutStatus() {
-        assertThat(bookCatalog.checkedItemStatus("1",user),is(equalTo(false)));
+        assertThat(bookCatalog.checkedItemStatus("1", user), is(equalTo(false)));
     }
 
     @Test
-    public void shouldReturnTrueReturnStatus(){
+    public void shouldReturnTrueReturnStatus() {
         bookCatalog.checkoutItem("1", user);
         bookCatalog.returnItem("1");
 
-        assertThat(bookCatalog.returnItemStatus("1"),is(equalTo(true)));
+        assertThat(bookCatalog.returnItemStatus("1"), is(equalTo(true)));
     }
 
     @Test
-    public void shouldReturnFalseReturnStatus(){
-        bookCatalog.checkoutItem("1",user);
+    public void shouldReturnFalseReturnStatus() {
+        bookCatalog.checkoutItem("1", user);
 
-        assertThat(bookCatalog.returnItemStatus("1"),is(equalTo(false)));
+        assertThat(bookCatalog.returnItemStatus("1"), is(equalTo(false)));
     }
 }

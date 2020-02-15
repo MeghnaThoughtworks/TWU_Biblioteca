@@ -20,14 +20,14 @@ class ListItemsTest {
     public void init() {
         outputUI = mock(OutputUI.class);
         library = mock(Catalog.class);
-        listItems = new ListItems<Book>(library,"List Books",outputUI);
+        listItems = new ListItems<Book>(library, "List Books", outputUI);
     }
 
     @Test
     public void shouldInvokeQuit() {
         listItems.onSelect();
 
-        verify(outputUI,times(1)).display(library.toString());
+        verify(outputUI, times(1)).display(library.toString());
 
     }
 

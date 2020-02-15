@@ -42,10 +42,10 @@ public class Catalog<T extends LibraryItem> {
         T item = null;
         for (Map.Entry<T, User> entry : checkedOutLibraryObjects.entrySet()) {
             if (entry.getKey().match((title.toLowerCase())) != null) {
-                    item = entry.getKey();
+                item = entry.getKey();
             }
         }
-        if(item != null ) {
+        if (item != null) {
             availableLibraryObjects.add(item);
             checkedOutLibraryObjects.remove(item);
         }

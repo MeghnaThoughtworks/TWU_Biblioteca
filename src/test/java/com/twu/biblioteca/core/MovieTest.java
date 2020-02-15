@@ -14,7 +14,7 @@ class MovieTest {
     Float movieRating;
 
     @BeforeEach
-    public void init(){
+    public void init() {
         title = "Parasite";
         year = 2020;
         director = "Bong Joon-Ho";
@@ -22,12 +22,12 @@ class MovieTest {
     }
 
     @Test
-    public void shouldEquateTwoMoviesTogether(){
-        Movie movie1 = new Movie(title,year,director,movieRating);
-        Movie movie2 = new Movie(title,year,director,movieRating);
+    public void shouldEquateTwoMoviesTogether() {
+        Movie movie1 = new Movie(title, year, director, movieRating);
+        Movie movie2 = new Movie(title, year, director, movieRating);
 
-        assertThat(movie1,is(equalTo(movie2)));
-        assertThat(movie1.hashCode(),is(equalTo(movie2.hashCode())));
+        assertThat(movie1, is(equalTo(movie2)));
+        assertThat(movie1.hashCode(), is(equalTo(movie2.hashCode())));
     }
 
 }

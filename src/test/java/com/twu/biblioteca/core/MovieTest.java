@@ -29,4 +29,5 @@ class MovieTest {
         assertThat(movie1,is(equalTo(movie2)));
         assertThat(movie1.hashCode(),is(equalTo(movie2.hashCode())));
     }
+
 }

@@ -49,6 +49,12 @@ class BookTest {
         String title = "it";
 
         assertThat(book1, is(not(equalTo(book1.match(title.toLowerCase())))));
+    }
 
+    @Test
+    public void shouldReturnBookIfTitleMatch(){
+        Book book1 = new Book(title,author,yearPublished);
+
+        assertThat(book1.match(title),is(equalTo(book1)));
     }
 }

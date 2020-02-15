@@ -18,46 +18,55 @@ import static org.mockito.Mockito.*;
 
 class CheckoutItemTest {
     Book book;
-    Catalog<Book> library;
+    Catalog<Book> bookCatalog;
     InputReader inputReader;
     CheckoutItem<Book> checkoutItem;
-    ArrayList<User> users;
+    User user = new User("123","12");
+    ArrayList<User> users = new ArrayList<>(){{
+        add(user);
+    }};
 
     @BeforeEach
     public void init() {
         book = mock(Book.class);
-        library = mock(Catalog.class);
+        bookCatalog = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        checkoutItem = new CheckoutItem<>(library, inputReader, users);
+        checkoutItem = new CheckoutItem<>(bookCatalog, inputReader, users);
     }
 
     @Test
     public void shouldDisplayName() {
-        String name = "Checkout Book";
+        String name = "Checkout";
         assertThat(name, is(equalTo(checkoutItem.toString())));
     }
 
     @Test
     public void shouldCheckoutBook() throws IOException, UserNotFoundException {
-        when(inputReader.getInput()).thenReturn("IT");
+        when(inputReader.getTitle()).thenReturn("IT");
+        when(inputReader.getUserNumber()).thenReturn("123");
+        when(inputReader.getUserPassword()).thenReturn("12");
 
         checkoutItem.onSelect();
 
-        verify(library, times(1)).checkoutItem(inputReader.getInput());
+        verify(bookCatalog, times(1)).checkoutItem(inputReader.getTitle(), user);
     }
 
     @Test
     public void shouldReturnSuccessMessage() throws IOException, UserNotFoundException {
-        when(inputReader.getInput()).thenReturn("IT");
-        when(library.checkedItemStatus(inputReader.getInput())).thenReturn(true);
+        when(inputReader.getTitle()).thenReturn("IT");
+        when(inputReader.getUserNumber()).thenReturn("123");
+        when(inputReader.getUserPassword()).thenReturn("12");
+        when(bookCatalog.checkedItemStatus(inputReader.getTitle(), user)).thenReturn(true);
 
         assertThat(checkoutItem.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_SUCCESS)));
     }
 
     @Test
     public void shouldReturnUnSuccessMessage() throws IOException, UserNotFoundException {
-        when(inputReader.getInput()).thenReturn("IT");
-        when(library.checkedItemStatus(inputReader.getInput())).thenReturn(false);
+        when(inputReader.getTitle()).thenReturn("IT");
+        when(inputReader.getUserNumber()).thenReturn("123");
+        when(inputReader.getUserPassword()).thenReturn("12");
+        when(bookCatalog.checkedItemStatus(inputReader.getTitle(), user)).thenReturn(false);
 
         assertThat(checkoutItem.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_UNSUCCESS)));
     }

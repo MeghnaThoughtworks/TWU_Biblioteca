@@ -16,46 +16,48 @@ import static org.mockito.Mockito.*;
 
 class ReturnItemTest {
     Book book;
-    Catalog library;
+    Catalog<Book> library;
     InputReader inputReader;
-    ReturnItem aReturnItem;
+    ReturnItem<Book> aReturnItem;
 
     @BeforeEach
     public void init() {
         book = mock(Book.class);
+        //noinspection unchecked
         library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        aReturnItem = new ReturnItem(library, inputReader);
+        aReturnItem = new ReturnItem<>(library, inputReader);
     }
 
     @Test
     public void shouldDisplayName(){
-        String name = "Return Book";
+        String name = "Return";
+
         assertThat(name, is(equalTo(aReturnItem.toString())));
     }
 
     @Test
     public void shouldReturnBook() throws IOException {
-        when(inputReader.getInput()).thenReturn("IT");
-        when(library.returnItemStatus(inputReader.getInput())).thenReturn(true);
+        when(inputReader.getTitle()).thenReturn("IT");
+        when(library.returnItemStatus(inputReader.getTitle())).thenReturn(true);
 
         aReturnItem.onSelect();
 
-        verify(library,times(1)).returnItem(inputReader.getInput());
+        verify(library,times(1)).returnItem(inputReader.getTitle());
     }
 
     @Test
     public void shouldReturnSuccessMessage() throws IOException {
-        when(inputReader.getInput()).thenReturn("IT");
-        when(library.returnItemStatus(inputReader.getInput())).thenReturn(true);
+        when(inputReader.getTitle()).thenReturn("IT");
+        when(library.returnItemStatus(inputReader.getTitle())).thenReturn(true);
 
         assertThat(aReturnItem.onSelect(), is(equalTo(Message.RETURN_BOOK_SUCCESS)));
     }
 
     @Test
     public void shouldReturnUnSuccessMessage() throws IOException {
-        when(inputReader.getInput()).thenReturn("IT");
-        when(library.returnItemStatus(inputReader.getInput())).thenReturn(false);
+        when(inputReader.getTitle()).thenReturn("IT");
+        when(library.returnItemStatus(inputReader.getTitle())).thenReturn(false);
 
         assertThat(aReturnItem.onSelect(), is(equalTo(Message.RETURN_BOOK_UNSUCCESS)));
     }

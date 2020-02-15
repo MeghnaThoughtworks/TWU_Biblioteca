@@ -21,8 +21,9 @@ public class Book extends LibraryItem {
     }
 
     public Book match(String title) {
-        if (this.title.toLowerCase().equals(title))
+        if (this.title.toLowerCase().equals(title)){
             return this;
+        }
         return null;
     }
 

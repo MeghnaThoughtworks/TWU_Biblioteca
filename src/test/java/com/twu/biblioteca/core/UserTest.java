@@ -11,11 +11,19 @@ class UserTest {
     String password = "212";
 
     @Test
-    public void shouldEquateTwoUsers(){
+    public void shouldEquateTwoUsers() {
         User userOne = new User(password, libraryNumber);
         User userTwo = new User(password, libraryNumber);
 
-        assertThat(userOne,is(equalTo(userTwo)));
-        assertThat(userOne.hashCode(),is(equalTo(userTwo.hashCode())));
+        assertThat(userOne, is(equalTo(userTwo)));
+        assertThat(userOne.hashCode(), is(equalTo(userTwo.hashCode())));
+    }
+
+    @Test
+    public void shouldDisplayUser() {
+        User userOne = new User(libraryNumber, password);
+        String user = libraryNumber + " " + password;
+
+        assertThat(userOne.toString(), is(equalTo(user)));
     }
 }

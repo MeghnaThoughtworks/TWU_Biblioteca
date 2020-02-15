@@ -5,10 +5,11 @@ import java.util.Objects;
 public class User {
     private final String libraryNumber;
     private final String password;
+//    private boolean loginStatus = false;
 
-    public User(String password, String libraryNumber) {
-        this.password = password;
+    public User(String libraryNumber, String password) {
         this.libraryNumber = libraryNumber;
+        this.password = password;
     }
 
     @Override
@@ -23,5 +24,10 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(libraryNumber, password);
+    }
+
+    @Override
+    public String toString() {
+        return libraryNumber + " " + password;
     }
 }

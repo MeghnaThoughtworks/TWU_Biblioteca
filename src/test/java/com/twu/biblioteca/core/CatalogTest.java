@@ -8,37 +8,67 @@ import java.util.ArrayList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.mock;
 
 class CatalogTest {
-    Catalog<Book> library;
+    Catalog<Book> bookCatalog;
     Book book;
     Book book1;
+    User user;
 
     @BeforeEach
     public void init() {
-        book = new Book("1","1",1);
-        book1 = new Book("2","2",2);
+        book = new Book("1", "1", 1);
+        book1 = new Book("2", "2", 2);
+        user = mock(User.class);
         ArrayList<Book> books = new ArrayList<>();
         books.add(book);
         books.add(book1);
-        library = new Catalog<>(books);
+        bookCatalog = new Catalog<>(books);
     }
 
     @Test
     public void shouldCheckoutABook() {
-        library.checkoutItem("1");
-        String expectedResult = "(1) " + book1.toString() + "\n";
+        bookCatalog.checkoutItem("1", user);
+        String expectedResult = book1.toString() + "\n";
 
-        assertThat(expectedResult, is(equalTo(library.toString())));
+        assertThat(expectedResult, is(equalTo(bookCatalog.toString())));
     }
 
     @Test
     public void shouldReturnABook() {
-        library.checkoutItem("1");
-        library.checkoutItem("2");
-        library.returnItem("1");
-        String expectedResult = "(1) " + book.toString() + "\n";
+        bookCatalog.checkoutItem("1", user);
+        bookCatalog.checkoutItem("2", user);
+        bookCatalog.returnItem("1");
+        String expectedResult = book.toString() + "\n";
 
-        assertThat(expectedResult, is(equalTo(library.toString())));
+        assertThat(expectedResult, is(equalTo(bookCatalog.toString())));
+    }
+
+    @Test
+    public void shouldReturnTrueCheckedOutStatus() {
+        bookCatalog.checkoutItem("1", user);
+
+        assertThat(bookCatalog.checkedItemStatus("1",user),is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldReturnFalseCheckedOutStatus() {
+        assertThat(bookCatalog.checkedItemStatus("1",user),is(equalTo(false)));
+    }
+
+    @Test
+    public void shouldReturnTrueReturnStatus(){
+        bookCatalog.checkoutItem("1", user);
+        bookCatalog.returnItem("1");
+
+        assertThat(bookCatalog.returnItemStatus("1"),is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldReturnFalseReturnStatus(){
+        bookCatalog.checkoutItem("1",user);
+
+        assertThat(bookCatalog.returnItemStatus("1"),is(equalTo(false)));
     }
 }

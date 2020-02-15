@@ -3,10 +3,12 @@ package com.twu.biblioteca.core;
 import com.twu.biblioteca.interfaces.LibraryItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Catalog<T extends LibraryItem> {
     private final ArrayList<T> availableLibraryObjects;
-    private final ArrayList<T> checkedOutLibraryObject = new ArrayList<>();
+    private final HashMap<T, User> checkedOutLibraryObjects = new HashMap<>();
 
     public Catalog(ArrayList<T> availableLibraryObjects) {
         this.availableLibraryObjects = availableLibraryObjects;
@@ -20,28 +22,34 @@ public class Catalog<T extends LibraryItem> {
         return null;
     }
 
-    public void checkoutItem(String title) {
+    public void checkoutItem(String title, User user) {
         T libraryItem = findItem(title, availableLibraryObjects);
         if (libraryItem != null) {
             availableLibraryObjects.remove(libraryItem);
-            checkedOutLibraryObject.add(libraryItem);
+            checkedOutLibraryObjects.put(libraryItem, user);
         }
     }
 
-    public boolean checkedItemStatus(String title) {
-        for (T libraryItem : checkedOutLibraryObject) {
-            if (libraryItem.match(title.toLowerCase()) != null)
+    public boolean checkedItemStatus(String title, User user) {
+        for (Map.Entry<T, User> entry : checkedOutLibraryObjects.entrySet()) {
+            if ((entry.getKey().match(title.toLowerCase())) != null && user.equals(entry.getValue()))
                 return true;
         }
         return false;
     }
 
     public void returnItem(String title) {
-        T libraryItem = findItem(title, checkedOutLibraryObject);
-        if (libraryItem != null) {
-            checkedOutLibraryObject.remove(libraryItem);
-            availableLibraryObjects.add(libraryItem);
+        T item = null;
+        for (Map.Entry<T, User> entry : checkedOutLibraryObjects.entrySet()) {
+            if (entry.getKey().match((title.toLowerCase())) != null) {
+                    item = entry.getKey();
+            }
         }
+        if(item != null ) {
+            availableLibraryObjects.add(item);
+            checkedOutLibraryObjects.remove(item);
+        }
+
     }
 
     public boolean returnItemStatus(String title) {
@@ -55,10 +63,8 @@ public class Catalog<T extends LibraryItem> {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        int i = 0;
         for (T libraryObject : availableLibraryObjects) {
-            stringBuilder.append("(").append(i + 1).append(") ").append(libraryObject).append("\n");
-            i++;
+            stringBuilder.append(libraryObject).append("\n");
         }
         return stringBuilder.toString();
     }

@@ -16,12 +16,12 @@ public class Biblioteca {
         this.menu = menu;
     }
 
-    public void display() throws IOException, UserNotFoundException {
+    public void display() throws IOException {
         System.out.println(WELCOME_MESSAGE);
         printMenu();
     }
 
-    private void printMenu() throws IOException, UserNotFoundException {
+    private void printMenu() throws IOException {
         //noinspection InfiniteLoopStatement
         while (true) {
             System.out.println("##########MENU##########");
@@ -36,7 +36,11 @@ public class Biblioteca {
                 System.out.println("Please enter a valid option!");
             }
             System.out.println("-------------------------");
-            System.out.println(menu.getOptions().get(choice - 1).onSelect());
+            try {
+                System.out.println(menu.getOptions().get(choice - 1).onSelect());
+            } catch (UserNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
             System.out.println("--------------------------");
         }
     }

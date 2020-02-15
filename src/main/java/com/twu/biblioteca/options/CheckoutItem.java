@@ -23,13 +23,13 @@ public class CheckoutItem<T extends LibraryItem> implements Option {
 
     @Override
     public String onSelect() throws IOException, UserNotFoundException {
-        String number = "123";
-        String password = "12";
+        String number = inputReader.getUserNumber();
+        String password = inputReader.getUserPassword();
         if (!login(number, password))
             throw new UserNotFoundException("User not found!");
-        String title = inputReader.getInput();
-        catalog.checkoutItem(title);
-        if (catalog.checkedItemStatus(title)) {
+        String title = inputReader.getTitle();
+        catalog.checkoutItem(title, new User(number, password));
+        if (catalog.checkedItemStatus(title, new User(number, password))) {
             return Message.CHECKOUT_BOOK_SUCCESS;
         }
         return Message.CHECKOUT_BOOK_UNSUCCESS;
@@ -37,7 +37,7 @@ public class CheckoutItem<T extends LibraryItem> implements Option {
 
     private boolean login(String number, String password) {
         for (User user : users) {
-            if (user.equals(new User(number, password)))
+            if (user.equals(new User(number,password)))
                 return true;
         }
         return false;

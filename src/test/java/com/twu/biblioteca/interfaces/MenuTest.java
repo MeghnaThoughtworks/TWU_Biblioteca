@@ -1,5 +1,6 @@
 package com.twu.biblioteca.interfaces;
 
+import com.twu.biblioteca.core.Book;
 import com.twu.biblioteca.core.Catalog;
 import com.twu.biblioteca.core.Menu;
 import com.twu.biblioteca.options.ListItems;
@@ -17,7 +18,7 @@ public class MenuTest {
     @Test
     public void shouldGetMenuOptions() {
         ArrayList<Option> options = new ArrayList<>();
-        options.add(new ListItems(mock(Catalog.class)));
+        options.add(new ListItems<Book>(mock(Catalog.class)));
         Menu menu = new Menu(options);
 
         assertThat(options, is(CoreMatchers.equalTo(menu.getOptions())));

@@ -20,6 +20,7 @@ class QuitTest {
     @Test
     public void shouldDisplayName() {
         String name = "Quit";
+
         assertThat(name, is(equalTo(quit.toString())));
     }
 }

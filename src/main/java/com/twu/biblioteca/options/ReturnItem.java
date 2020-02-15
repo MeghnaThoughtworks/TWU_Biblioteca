@@ -19,7 +19,7 @@ public class ReturnItem<T extends LibraryItem> implements Option {
 
     @Override
     public String onSelect() throws IOException {
-        String title = inputReader.getInput();
+        String title = inputReader.getTitle();
         catalog.returnItem(title);
         if (catalog.returnItemStatus(title)) {
             return Message.RETURN_BOOK_SUCCESS;
@@ -32,3 +32,4 @@ public class ReturnItem<T extends LibraryItem> implements Option {
         return "Return";
     }
 }
+

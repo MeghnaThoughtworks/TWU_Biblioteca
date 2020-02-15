@@ -22,7 +22,7 @@ public class BibliotecaApp {
     private static final Option optionSix = new CheckoutItem<>(catalogMovie, inputReader, users());
     private static final Option optionSeven = new ReturnItem<>(catalogMovie, inputReader);
 
-    public static void main(String[] args) throws IOException, UserNotFoundException {
+    public static void main(String[] args) throws IOException {
         ArrayList<Option> options = new ArrayList<>();
         options.add(optionOne);
         options.add(optionTwo);
@@ -33,6 +33,7 @@ public class BibliotecaApp {
         options.add(optionThree);
         Menu menu = new Menu(options);
         Biblioteca biblioteca = new Biblioteca(menu);
+
         biblioteca.display();
     }
 }

@@ -5,6 +5,7 @@ import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Catalog;
 import com.twu.biblioteca.interfaces.Option;
+import com.twu.biblioteca.interfaces.OutputUI;
 
 import java.io.IOException;
 
@@ -12,21 +13,24 @@ public class ReturnItem<T extends LibraryItem> implements Option {
     private final Catalog<T> catalog;
     private final InputReader inputReader;
     private String display;
+    private OutputUI outputUI;
 
-    public ReturnItem(Catalog<T> catalog, InputReader inputReader, String display) {
+    public ReturnItem(Catalog<T> catalog, InputReader inputReader, String display, OutputUI outputUI) {
         this.catalog = catalog;
         this.inputReader = inputReader;
         this.display = display;
+        this.outputUI = outputUI;
     }
 
     @Override
-    public String onSelect() throws IOException {
+    public void onSelect() throws IOException {
         String title = inputReader.getTitle();
         catalog.returnItem(title);
         if (catalog.returnItemStatus(title)) {
-            return Message.RETURN_BOOK_SUCCESS;
+            outputUI.display(Message.RETURN_BOOK_SUCCESS);
+            return;
         }
-        return Message.RETURN_BOOK_UNSUCCESS;
+        outputUI.display(Message.RETURN_BOOK_UNSUCCESS);
     }
 
     @Override

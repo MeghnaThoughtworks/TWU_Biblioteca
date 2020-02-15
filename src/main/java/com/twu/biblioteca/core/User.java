@@ -5,7 +5,6 @@ import java.util.Objects;
 public class User {
     private final String libraryNumber;
     private final String password;
-//    private boolean loginStatus = false;
 
     public User(String libraryNumber, String password) {
         this.libraryNumber = libraryNumber;

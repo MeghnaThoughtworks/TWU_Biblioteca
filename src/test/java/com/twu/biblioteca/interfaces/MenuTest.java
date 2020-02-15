@@ -18,7 +18,7 @@ public class MenuTest {
     @Test
     public void shouldGetMenuOptions() {
         ArrayList<Option> options = new ArrayList<>();
-        options.add(new ListItems<Book>(mock(Catalog.class)));
+        options.add(mock(Option.class));
         Menu menu = new Menu(options);
 
         assertThat(options, is(CoreMatchers.equalTo(menu.getOptions())));

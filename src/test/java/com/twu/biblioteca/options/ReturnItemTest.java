@@ -4,6 +4,7 @@ import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Book;
 import com.twu.biblioteca.core.Catalog;
+import com.twu.biblioteca.interfaces.OutputUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,7 @@ class ReturnItemTest {
     Catalog<Book> library;
     InputReader inputReader;
     ReturnItem<Book> aReturnItem;
+    OutputUI outputUI;
 
     @BeforeEach
     public void init() {
@@ -26,12 +28,13 @@ class ReturnItemTest {
         //noinspection unchecked
         library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        aReturnItem = new ReturnItem<>(library, inputReader, "Return Book");
+        outputUI = mock(OutputUI.class);
+        aReturnItem = new ReturnItem<>(library, inputReader, "Return Book", outputUI);
     }
 
     @Test
     public void shouldDisplayName(){
-        String name = "Return";
+        String name = "Return Book";
 
         assertThat(name, is(equalTo(aReturnItem.toString())));
     }
@@ -51,7 +54,9 @@ class ReturnItemTest {
         when(inputReader.getTitle()).thenReturn("IT");
         when(library.returnItemStatus(inputReader.getTitle())).thenReturn(true);
 
-        assertThat(aReturnItem.onSelect(), is(equalTo(Message.RETURN_BOOK_SUCCESS)));
+        aReturnItem.onSelect();
+
+        verify(outputUI,times(1)).display(Message.RETURN_BOOK_SUCCESS);
     }
 
     @Test
@@ -59,6 +64,8 @@ class ReturnItemTest {
         when(inputReader.getTitle()).thenReturn("IT");
         when(library.returnItemStatus(inputReader.getTitle())).thenReturn(false);
 
-        assertThat(aReturnItem.onSelect(), is(equalTo(Message.RETURN_BOOK_UNSUCCESS)));
+        aReturnItem.onSelect();
+
+        verify(outputUI,times(1)).display(Message.RETURN_BOOK_UNSUCCESS);
     }
 }

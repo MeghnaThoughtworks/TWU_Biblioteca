@@ -6,6 +6,7 @@ import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Catalog;
 import com.twu.biblioteca.interfaces.Option;
+import com.twu.biblioteca.interfaces.OutputUI;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,16 +16,18 @@ public class CheckoutItem<T extends LibraryItem> implements Option {
     private final InputReader inputReader;
     private final ArrayList<User> users;
     private String display;
+    private OutputUI outputUI;
 
-    public CheckoutItem(Catalog<T> catalog, InputReader inputReader, ArrayList<User> users, String display) {
+    public CheckoutItem(Catalog<T> catalog, InputReader inputReader, ArrayList<User> users, String display, OutputUI outputUI) {
         this.catalog = catalog;
         this.inputReader = inputReader;
         this.users = users;
         this.display = display;
+        this.outputUI = outputUI;
     }
 
     @Override
-    public String onSelect() throws IOException, UserNotFoundException {
+    public void onSelect() throws IOException, UserNotFoundException {
         String number = inputReader.getUserNumber();
         String password = inputReader.getUserPassword();
         if (!login(number, password))
@@ -32,9 +35,10 @@ public class CheckoutItem<T extends LibraryItem> implements Option {
         String title = inputReader.getTitle();
         catalog.checkoutItem(title, new User(number, password));
         if (catalog.checkedItemStatus(title, new User(number, password))) {
-            return Message.CHECKOUT_BOOK_SUCCESS;
+            outputUI.display(Message.CHECKOUT_BOOK_SUCCESS);
+            return;
         }
-        return Message.CHECKOUT_BOOK_UNSUCCESS;
+        outputUI.display(Message.CHECKOUT_BOOK_UNSUCCESS);
     }
 
     private boolean login(String number, String password) {

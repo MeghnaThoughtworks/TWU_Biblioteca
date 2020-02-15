@@ -4,9 +4,8 @@ import com.twu.biblioteca.interfaces.Option;
 
 public class Quit implements Option {
     @Override
-    public String onSelect() {
+    public void onSelect() {
         quit();
-        return "";
     }
 
     public void quit(){

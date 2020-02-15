@@ -2,6 +2,7 @@ package com.twu.biblioteca.options;
 
 import com.twu.biblioteca.core.Book;
 import com.twu.biblioteca.core.Catalog;
+import com.twu.biblioteca.interfaces.OutputUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,22 +13,27 @@ import static org.mockito.Mockito.*;
 
 class ListItemsTest {
     Catalog<Book> library;
+    OutputUI outputUI;
     ListItems<Book> listItems;
 
     @BeforeEach
     public void init() {
+        outputUI = mock(OutputUI.class);
         library = mock(Catalog.class);
-        listItems = new ListItems<>(library);
+        listItems = new ListItems<Book>(library,"List Books",outputUI);
     }
 
     @Test
     public void shouldInvokeQuit() {
-        assertThat(listItems.onSelect(), is(equalTo(library.toString())));
+        listItems.onSelect();
+
+        verify(outputUI,times(1)).display(library.toString());
+
     }
 
     @Test
     public void shouldDisplayName() {
-        String name = "List";
+        String name = "List Books";
 
         assertThat(name, is(equalTo(listItems.toString())));
     }

@@ -1,10 +1,12 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.core.Menu;
 import com.twu.biblioteca.core.User;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Book;
 import com.twu.biblioteca.core.Catalog;
+import com.twu.biblioteca.interfaces.OutputUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +23,7 @@ class CheckoutItemTest {
     Catalog<Book> bookCatalog;
     InputReader inputReader;
     CheckoutItem<Book> checkoutItem;
+    OutputUI outputUI;
     User user = new User("123","12");
     ArrayList<User> users = new ArrayList<>(){{
         add(user);
@@ -31,12 +34,13 @@ class CheckoutItemTest {
         book = mock(Book.class);
         bookCatalog = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        checkoutItem = new CheckoutItem<>(bookCatalog, inputReader, users, "Checkout Book");
+        outputUI = mock(OutputUI.class);
+        checkoutItem = new CheckoutItem<>(bookCatalog, inputReader, users, "Checkout Book", outputUI);
     }
 
     @Test
     public void shouldDisplayName() {
-        String name = "Checkout";
+        String name = "Checkout Book";
         assertThat(name, is(equalTo(checkoutItem.toString())));
     }
 
@@ -58,7 +62,9 @@ class CheckoutItemTest {
         when(inputReader.getUserPassword()).thenReturn("12");
         when(bookCatalog.checkedItemStatus(inputReader.getTitle(), user)).thenReturn(true);
 
-        assertThat(checkoutItem.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_SUCCESS)));
+        checkoutItem.onSelect();
+
+        verify(outputUI,times(1)).display(Message.CHECKOUT_BOOK_SUCCESS);
     }
 
     @Test
@@ -68,6 +74,8 @@ class CheckoutItemTest {
         when(inputReader.getUserPassword()).thenReturn("12");
         when(bookCatalog.checkedItemStatus(inputReader.getTitle(), user)).thenReturn(false);
 
-        assertThat(checkoutItem.onSelect(), is(equalTo(Message.CHECKOUT_BOOK_UNSUCCESS)));
+        checkoutItem.onSelect();
+
+        verify(outputUI,times(1)).display(Message.CHECKOUT_BOOK_UNSUCCESS);
     }
 }

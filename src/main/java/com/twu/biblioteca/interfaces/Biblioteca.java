@@ -37,7 +37,7 @@ public class Biblioteca {
             }
             System.out.println("-------------------------");
             try {
-                System.out.println(menu.getOptions().get(choice - 1).onSelect());
+                menu.getOptions().get(choice - 1).onSelect();
             } catch (UserNotFoundException e) {
                 System.out.println(e.getMessage());
             }

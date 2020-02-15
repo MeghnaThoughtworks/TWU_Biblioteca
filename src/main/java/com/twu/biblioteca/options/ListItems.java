@@ -6,9 +6,11 @@ import com.twu.biblioteca.interfaces.Option;
 
 public class ListItems<T extends LibraryItem> implements Option {
     private final Catalog<T> libraryObject;
+    private String display;
 
-    public ListItems(Catalog<T> libraryObject1) {
+    public ListItems(Catalog<T> libraryObject1,String display) {
         this.libraryObject = libraryObject1;
+        this.display = display;
     }
 
     @Override
@@ -18,6 +20,6 @@ public class ListItems<T extends LibraryItem> implements Option {
 
     @Override
     public String toString() {
-        return "List";
+        return display;
     }
 }

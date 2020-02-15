@@ -26,7 +26,7 @@ class ReturnItemTest {
         //noinspection unchecked
         library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        aReturnItem = new ReturnItem<>(library, inputReader);
+        aReturnItem = new ReturnItem<>(library, inputReader, "Return Book");
     }
 
     @Test

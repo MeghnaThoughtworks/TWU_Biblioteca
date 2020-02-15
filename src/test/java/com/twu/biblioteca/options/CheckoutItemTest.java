@@ -31,7 +31,7 @@ class CheckoutItemTest {
         book = mock(Book.class);
         bookCatalog = mock(Catalog.class);
         inputReader = mock(InputReader.class);
-        checkoutItem = new CheckoutItem<>(bookCatalog, inputReader, users);
+        checkoutItem = new CheckoutItem<>(bookCatalog, inputReader, users, "Checkout Book");
     }
 
     @Test

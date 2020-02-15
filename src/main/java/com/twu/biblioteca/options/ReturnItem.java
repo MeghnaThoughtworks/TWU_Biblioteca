@@ -11,10 +11,12 @@ import java.io.IOException;
 public class ReturnItem<T extends LibraryItem> implements Option {
     private final Catalog<T> catalog;
     private final InputReader inputReader;
+    private String display;
 
-    public ReturnItem(Catalog<T> catalog, InputReader inputReader) {
+    public ReturnItem(Catalog<T> catalog, InputReader inputReader, String display) {
         this.catalog = catalog;
         this.inputReader = inputReader;
+        this.display = display;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class ReturnItem<T extends LibraryItem> implements Option {
 
     @Override
     public String toString() {
-        return "Return";
+        return display;
     }
 }
 

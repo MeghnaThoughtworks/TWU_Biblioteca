@@ -14,11 +14,13 @@ public class CheckoutItem<T extends LibraryItem> implements Option {
     private final Catalog<T> catalog;
     private final InputReader inputReader;
     private final ArrayList<User> users;
+    private String display;
 
-    public CheckoutItem(Catalog<T> catalog, InputReader inputReader, ArrayList<User> users) {
+    public CheckoutItem(Catalog<T> catalog, InputReader inputReader, ArrayList<User> users, String display) {
         this.catalog = catalog;
         this.inputReader = inputReader;
         this.users = users;
+        this.display = display;
     }
 
     @Override
@@ -45,6 +47,6 @@ public class CheckoutItem<T extends LibraryItem> implements Option {
 
     @Override
     public String toString() {
-        return "Checkout";
+        return display;
     }
 }

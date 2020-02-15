@@ -19,10 +19,10 @@ public class BibliotecaApp {
     private static final Option optionOne = new ListItems<>(catalogBook, "List Books", outputUI);
     private static final Option optionTwo = new CheckoutItem<>(catalogBook, inputReader, users(), "Checkout Book", outputUI);
     private static final Option optionThree = new Quit();
-    private static final Option optionFour = new ReturnItem<>(catalogBook, inputReader, "Return Book", outputUI);
+    private static final Option optionFour = new ReturnItem<>(catalogBook, inputReader, "Return Book", outputUI, users());
     private static final Option optionFive = new ListItems<>(catalogMovie, "List Movie", outputUI);
     private static final Option optionSix = new CheckoutItem<>(catalogMovie, inputReader, users(), "Checkout Movie", outputUI);
-    private static final Option optionSeven = new ReturnItem<>(catalogMovie, inputReader, "Return Movie", outputUI);
+    private static final Option optionSeven = new ReturnItem<>(catalogMovie, inputReader, "Return Movie", outputUI, users());
 
     public static void main(String[] args) throws IOException {
         ArrayList<Option> options = new ArrayList<>();

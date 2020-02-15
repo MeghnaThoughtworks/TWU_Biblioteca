@@ -1,5 +1,6 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.core.User;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Book;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -21,6 +23,7 @@ class ReturnItemTest {
     InputReader inputReader;
     ReturnItem<Book> aReturnItem;
     OutputUI outputUI;
+    User user;
 
     @BeforeEach
     public void init() {
@@ -29,7 +32,11 @@ class ReturnItemTest {
         library = mock(Catalog.class);
         inputReader = mock(InputReader.class);
         outputUI = mock(OutputUI.class);
-        aReturnItem = new ReturnItem<>(library, inputReader, "Return Book", outputUI);
+        user = new User("123", "12");
+        ArrayList<User> users = new ArrayList<>() {{
+            add(user);
+        }};
+        aReturnItem = new ReturnItem<>(library, inputReader, "Return Book", outputUI, users);
     }
 
     @Test
@@ -40,8 +47,10 @@ class ReturnItemTest {
     }
 
     @Test
-    public void shouldReturnBook() throws IOException {
+    public void shouldReturnBook() throws IOException, UserNotFoundException {
         when(inputReader.getTitle()).thenReturn("IT");
+        when(inputReader.getUserNumber()).thenReturn("123");
+        when(inputReader.getUserPassword()).thenReturn("12");
         when(library.returnItemStatus(inputReader.getTitle())).thenReturn(true);
 
         aReturnItem.onSelect();
@@ -50,8 +59,10 @@ class ReturnItemTest {
     }
 
     @Test
-    public void shouldReturnSuccessMessage() throws IOException {
+    public void shouldReturnSuccessMessage() throws IOException, UserNotFoundException {
         when(inputReader.getTitle()).thenReturn("IT");
+        when(inputReader.getUserNumber()).thenReturn("123");
+        when(inputReader.getUserPassword()).thenReturn("12");
         when(library.returnItemStatus(inputReader.getTitle())).thenReturn(true);
 
         aReturnItem.onSelect();
@@ -60,8 +71,10 @@ class ReturnItemTest {
     }
 
     @Test
-    public void shouldReturnUnSuccessMessage() throws IOException {
+    public void shouldReturnUnSuccessMessage() throws IOException, UserNotFoundException {
         when(inputReader.getTitle()).thenReturn("IT");
+        when(inputReader.getUserNumber()).thenReturn("123");
+        when(inputReader.getUserPassword()).thenReturn("12");
         when(library.returnItemStatus(inputReader.getTitle())).thenReturn(false);
 
         aReturnItem.onSelect();

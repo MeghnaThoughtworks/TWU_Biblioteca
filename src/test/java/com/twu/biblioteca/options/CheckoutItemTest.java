@@ -1,7 +1,9 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.exceptions.ItemNotFoundException;
 import com.twu.biblioteca.core.User;
 import com.twu.biblioteca.data.Message;
+import com.twu.biblioteca.exceptions.UserNotFoundException;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Book;
 import com.twu.biblioteca.core.Catalog;
@@ -46,7 +48,7 @@ class CheckoutItemTest {
     }
 
     @Test
-    public void shouldCheckoutBook() throws IOException, UserNotFoundException {
+    public void shouldCheckoutBook() throws IOException, UserNotFoundException, ItemNotFoundException {
         when(inputReader.getTitle()).thenReturn("IT");
         when(inputReader.getUserNumber()).thenReturn("123");
         when(inputReader.getUserPassword()).thenReturn("12");
@@ -61,7 +63,6 @@ class CheckoutItemTest {
         when(inputReader.getTitle()).thenReturn("IT");
         when(inputReader.getUserNumber()).thenReturn("123");
         when(inputReader.getUserPassword()).thenReturn("12");
-        when(bookCatalog.checkedItemStatus(inputReader.getTitle(), user)).thenReturn(true);
 
         checkoutItem.onSelect();
 
@@ -73,7 +74,6 @@ class CheckoutItemTest {
         when(inputReader.getTitle()).thenReturn("IT");
         when(inputReader.getUserNumber()).thenReturn("123");
         when(inputReader.getUserPassword()).thenReturn("12");
-        when(bookCatalog.checkedItemStatus(inputReader.getTitle(), user)).thenReturn(false);
 
         checkoutItem.onSelect();
 

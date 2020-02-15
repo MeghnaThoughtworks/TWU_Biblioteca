@@ -1,5 +1,7 @@
 package com.twu.biblioteca.core;
 
+import com.twu.biblioteca.exceptions.ItemCantReturnException;
+import com.twu.biblioteca.exceptions.ItemNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +30,7 @@ class CatalogTest {
     }
 
     @Test
-    public void shouldCheckoutABook() {
+    public void shouldCheckoutABook() throws ItemNotFoundException {
         bookCatalog.checkoutItem("1", user);
         String expectedResult = book1.toString() + "\n";
 
@@ -36,7 +38,7 @@ class CatalogTest {
     }
 
     @Test
-    public void shouldReturnABook() {
+    public void shouldReturnABook() throws ItemCantReturnException, ItemNotFoundException {
         bookCatalog.checkoutItem("1", user);
         bookCatalog.checkoutItem("2", user);
         bookCatalog.returnItem("1");
@@ -45,30 +47,4 @@ class CatalogTest {
         assertThat(expectedResult, is(equalTo(bookCatalog.toString())));
     }
 
-    @Test
-    public void shouldReturnTrueCheckedOutStatus() {
-        bookCatalog.checkoutItem("1", user);
-
-        assertThat(bookCatalog.checkedItemStatus("1", user), is(equalTo(true)));
-    }
-
-    @Test
-    public void shouldReturnFalseCheckedOutStatus() {
-        assertThat(bookCatalog.checkedItemStatus("1", user), is(equalTo(false)));
-    }
-
-    @Test
-    public void shouldReturnTrueReturnStatus() {
-        bookCatalog.checkoutItem("1", user);
-        bookCatalog.returnItem("1");
-
-        assertThat(bookCatalog.returnItemStatus("1"), is(equalTo(true)));
-    }
-
-    @Test
-    public void shouldReturnFalseReturnStatus() {
-        bookCatalog.checkoutItem("1", user);
-
-        assertThat(bookCatalog.returnItemStatus("1"), is(equalTo(false)));
-    }
 }

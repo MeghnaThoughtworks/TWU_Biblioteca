@@ -1,6 +1,8 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.exceptions.ItemCantReturnException;
 import com.twu.biblioteca.core.User;
+import com.twu.biblioteca.exceptions.UserNotFoundException;
 import com.twu.biblioteca.interfaces.LibraryItem;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
@@ -33,12 +35,12 @@ public class ReturnItem<T extends LibraryItem> implements Option {
         if (!login(number, password))
             throw new UserNotFoundException("User not found!");
         String title = inputReader.getTitle();
-        catalog.returnItem(title);
-        if (catalog.returnItemStatus(title)) {
+        try {
+            catalog.returnItem(title);
             outputUI.display(Message.RETURN_BOOK_SUCCESS);
-            return;
+        } catch (ItemCantReturnException e) {
+            outputUI.display(Message.RETURN_BOOK_UNSUCCESS);
         }
-        outputUI.display(Message.RETURN_BOOK_UNSUCCESS);
     }
 
     private boolean login(String number, String password) {

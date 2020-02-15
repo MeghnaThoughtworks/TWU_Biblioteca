@@ -1,6 +1,8 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.exceptions.ItemNotFoundException;
 import com.twu.biblioteca.core.User;
+import com.twu.biblioteca.exceptions.UserNotFoundException;
 import com.twu.biblioteca.interfaces.LibraryItem;
 import com.twu.biblioteca.data.Message;
 import com.twu.biblioteca.inputReader.InputReader;
@@ -33,12 +35,13 @@ public class CheckoutItem<T extends LibraryItem> implements Option {
         if (!login(number, password))
             throw new UserNotFoundException("User not found!");
         String title = inputReader.getTitle();
-        catalog.checkoutItem(title, new User(number, password));
-        if (catalog.checkedItemStatus(title, new User(number, password))) {
+        try {
+            catalog.checkoutItem(title, new User(number, password));
             outputUI.display(Message.CHECKOUT_BOOK_SUCCESS);
-            return;
+        } catch (ItemNotFoundException e) {
+            outputUI.display(Message.CHECKOUT_BOOK_UNSUCCESS);
         }
-        outputUI.display(Message.CHECKOUT_BOOK_UNSUCCESS);
+
     }
 
     private boolean login(String number, String password) {

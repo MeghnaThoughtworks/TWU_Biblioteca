@@ -1,5 +1,7 @@
 package com.twu.biblioteca.core;
 
+import com.twu.biblioteca.exceptions.ItemCantReturnException;
+import com.twu.biblioteca.exceptions.ItemNotFoundException;
 import com.twu.biblioteca.interfaces.LibraryItem;
 
 import java.util.ArrayList;
@@ -22,23 +24,17 @@ public class Catalog<T extends LibraryItem> {
         return null;
     }
 
-    public void checkoutItem(String title, User user) {
+    public void checkoutItem(String title, User user) throws ItemNotFoundException {
         T libraryItem = findItem(title, availableLibraryObjects);
         if (libraryItem != null) {
             availableLibraryObjects.remove(libraryItem);
             checkedOutLibraryObjects.put(libraryItem, user);
+            return;
         }
+        throw new ItemNotFoundException("The item you wanted wasn't in stock or doesn't exist !");
     }
 
-    public boolean checkedItemStatus(String title, User user) {
-        for (Map.Entry<T, User> entry : checkedOutLibraryObjects.entrySet()) {
-            if ((entry.getKey().match(title.toLowerCase())) != null && user.equals(entry.getValue()))
-                return true;
-        }
-        return false;
-    }
-
-    public void returnItem(String title) {
+    public void returnItem(String title) throws ItemCantReturnException {
         T item = null;
         for (Map.Entry<T, User> entry : checkedOutLibraryObjects.entrySet()) {
             if (entry.getKey().match((title.toLowerCase())) != null) {
@@ -48,16 +44,10 @@ public class Catalog<T extends LibraryItem> {
         if (item != null) {
             availableLibraryObjects.add(item);
             checkedOutLibraryObjects.remove(item);
+            return;
         }
+        throw new ItemCantReturnException("You either tried to return an item not present or already returned");
 
-    }
-
-    public boolean returnItemStatus(String title) {
-        for (T libraryItem : availableLibraryObjects) {
-            if (libraryItem.match(title.toLowerCase()) != null)
-                return true;
-        }
-        return false;
     }
 
     @Override

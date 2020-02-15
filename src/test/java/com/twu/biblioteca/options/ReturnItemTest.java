@@ -1,7 +1,9 @@
 package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.exceptions.ItemCantReturnException;
 import com.twu.biblioteca.core.User;
 import com.twu.biblioteca.data.Message;
+import com.twu.biblioteca.exceptions.UserNotFoundException;
 import com.twu.biblioteca.inputReader.InputReader;
 import com.twu.biblioteca.core.Book;
 import com.twu.biblioteca.core.Catalog;
@@ -47,11 +49,10 @@ class ReturnItemTest {
     }
 
     @Test
-    public void shouldReturnBook() throws IOException, UserNotFoundException {
+    public void shouldReturnBook() throws IOException, UserNotFoundException, ItemCantReturnException {
         when(inputReader.getTitle()).thenReturn("IT");
         when(inputReader.getUserNumber()).thenReturn("123");
         when(inputReader.getUserPassword()).thenReturn("12");
-        when(library.returnItemStatus(inputReader.getTitle())).thenReturn(true);
 
         aReturnItem.onSelect();
 
@@ -63,7 +64,6 @@ class ReturnItemTest {
         when(inputReader.getTitle()).thenReturn("IT");
         when(inputReader.getUserNumber()).thenReturn("123");
         when(inputReader.getUserPassword()).thenReturn("12");
-        when(library.returnItemStatus(inputReader.getTitle())).thenReturn(true);
 
         aReturnItem.onSelect();
 
@@ -75,7 +75,6 @@ class ReturnItemTest {
         when(inputReader.getTitle()).thenReturn("IT");
         when(inputReader.getUserNumber()).thenReturn("123");
         when(inputReader.getUserPassword()).thenReturn("12");
-        when(library.returnItemStatus(inputReader.getTitle())).thenReturn(false);
 
         aReturnItem.onSelect();
 
